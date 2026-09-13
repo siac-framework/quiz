@@ -186,6 +186,15 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
+
+
+/* ==========================================
+   UTILITY CLASSES
+   ========================================== */
+.hide {
+  display: none !important;
+}
+
 /* ==========================================
    RESULTS CONTAINER (Hidden Initially)
    ========================================== */
@@ -196,7 +205,7 @@ body {
   padding: 2rem;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(0, 0, 0, 0.1);
-  max-width: 600px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
@@ -211,19 +220,23 @@ body {
   width: 100%;
   border-collapse: collapse;
   margin-top: 1rem;
+  table-layout: auto;
 }
 
 .results-table th,
 .results-table td {
-  padding: 0.75rem;
+  padding: 1rem;
   text-align: left;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  vertical-align: top;
 }
 
 .results-table th {
   background: rgba(0, 0, 0, 0.05);
   font-weight: bold;
   color: #2c3e50;
+  position: sticky;
+  top: 0;
 }
 
 .results-table tr:last-child td {
@@ -234,63 +247,76 @@ body {
   background: rgba(0, 0, 0, 0.03);
 }
 
-/* ==========================================
-   UTILITY CLASSES
-   ========================================== */
-.hide {
-  display: none !important;
+/* Score Column (Centered, Numeric) */
+.results-table td:nth-child(2) {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #2c3e50;
+  width: 60px;
+}
+
+/* Label Column (Wider, Multi-line Support) */
+.results-table td:nth-child(3) {
+  font-weight: normal;
+  color: #555;
+  word-wrap: break-word;
+  hyphens: auto;
+  min-width: 250px;
+  line-height: 1.4;
+}
+
+/* Header Third Column (Label) */
+.results-table th:nth-child(3) {
+  font-weight: bold;
+  color: #2c3e50;
+  min-width: 250px;
+}
+
+/* Not Enough Answers Styling */
+.results-table td:contains("Not enough answers") {
+  color: #e74c3c;
+  font-style: italic;
 }
 
 /* ==========================================
    MOBILE RESPONSIVENESS
    ========================================== */
-@media (max-width: 480px) {
-  body {
-    padding: 1rem 0.5rem;
-  }
-
-  .quiz-header {
-    padding: 1rem 0.5rem 2rem;
-  }
-
-  .quiz-header h1 {
-    font-size: 1.75rem;
-  }
-
-  .intro-text {
-    font-size: 1rem;
-  }
-
-  .question-header {
-    padding: 0.75rem;
-  }
-
-  .question-text {
-    padding: 0.75rem;
-    font-size: 0.95rem;
-  }
-
-  .options-group {
-    padding: 0 0.75rem 0.75rem;
-  }
-
-  .option-label {
-    padding: 0.6rem 0.75rem;
-  }
-
-  .submit-btn {
-    padding: 0.85rem;
-    font-size: 1rem;
-  }
-
+@media (max-width: 768px) {
   .results-container {
-    padding: 1.5rem;
+    padding: 1rem;
+    overflow-x: auto;
   }
+  
+  .results-table {
+    display: block;
+    overflow-x: auto;
+  }
+  
+  .results-table th,
+  .results-table td {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
+  
+  .results-table td:nth-child(3) {
+    min-width: 200px;
+  }
+}
 
+@media (max-width: 480px) {
+  .results-container h2 {
+    font-size: 1.5rem;
+  }
+  
   .results-table th,
   .results-table td {
     padding: 0.5rem;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+  }
+  
+  .results-table td:nth-child(3) {
+    min-width: 180px;
   }
 }
 
