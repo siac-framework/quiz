@@ -1,42 +1,55 @@
 // ===========================
 // QUIZ DATA CONFIGURATION
-// Add/edit questions here
+// Each TOPIC can have MULTIPLE QUESTIONS
 // ===========================
 const quizData = [
   {
-    id: 'topic1',
-    title: 'Topic 1',
-    question: 'What is your name?',
-    options: {
-      1: 'Bob',
-      2: 'Joe',
-      3: 'Arthur, King of the Britons'
-    }
+    id: 'biblical_alignment',
+    title: 'Biblical Alignment',
+    questions: [
+      {
+        id: 'q1',
+        text: 'If you have a favorite verse or book, what part of the Bible is it in?',
+        options: {
+          1: 'I don\'t have one',
+          2: 'The Gospels',
+          3: 'The New Testament, excluding Revelations',
+          4: 'Revelations',
+          5: 'The Old Testament, excluding Psalms, Proverbs, and Song of Solomon',
+          6: 'Psalms, Proverbs, or Song of Solomon'
+        }
+      },
+      {
+        id: 'q2',
+        text: 'Do you believe that the Old Testament rules and standards should be taken literally in your life?',
+        options: {
+          1: 'No, I just follow what is in the Gospels only',
+          2: 'No, Jesus completed the Law and the Prophets, so I only follow the New Testament guidelines',
+          4: 'Yes -- but only some, and I pick and choose which ones I think I should follow',
+          6: 'Yes -- including all the animal sacrifices, stoning people to death, not eating shellfish or bacon, etc.'
+        }
+      }
+    ]
   },
   {
     id: 'topic2',
     title: 'Topic 2',
-    question: 'What is your quest?',
-    options: {
-      1: 'Nothing, really',
-      2: 'To find the Holy Grail',
-      3: 'I don\'t know'
-    }
-  },
-  // Add more topics here...
-  {
-    id: 'topic3',
-    title: 'Topic 3',
-    question: 'What is your favorite color?',
-    options: {
-      1: 'Blue',
-      2: 'Green',
-      3: 'Red'
-    }
+    questions: [
+      {
+        id: 'q1',
+        text: 'What is your quest?',
+        options: {
+          1: 'Nothing, really',
+          2: 'To find the Holy Grail',
+          3: 'I don\'t know'
+        }
+      }
+    ]
   }
+  // Add more topics here...
 ];
 
-// Store user responses
+// Store user responses: { topic_id: { q1: 'val', q2: 'val', ... } }
 let topicResults = {};
 
 // ===========================
@@ -48,37 +61,52 @@ document.addEventListener('DOMContentLoaded', () => {
   renderQuiz();
 });
 
-// Render all question cards dynamically
+// Render all topic/question cards dynamically
 function renderQuiz() {
   const container = document.getElementById('quizContainer');
-  
-  // Clear existing content except the submit button
   container.innerHTML = '';
   
-  quizData.forEach((topic, index) => {
-    const card = document.createElement('div');
-    card.className = 'question-card';
+  quizData.forEach(topic => {
+    // Create a wrapper for the topic
+    const topicWrapper = document.createElement('div');
+    topicWrapper.className = 'question-card';
     
-    card.innerHTML = `
+    // Topic header (collapsible)
+    topicWrapper.innerHTML = `
       <div class="question-header" onclick="toggleQuestion(this)">
-        <span class="question-title">${topic.title}: ${topic.question}</span>
+        <span class="question-title">${topic.title}</span>
         <span class="toggle-icon">▼</span>
       </div>
       <div class="question-content">
-        <div class="options-group" data-topic="${topic.id}">
-          ${Object.entries(topic.options).map(([value, text]) => `
-            <label class="option-label">
-              <input type="radio" name="${topic.id}" value="${value}"> ${text}
-            </label>
-          `).join('')}
-        </div>
+        <div class="questions-container" data-topic="${topic.id}"></div>
       </div>
     `;
     
-    container.appendChild(card);
+    const questionsContainer = topicWrapper.querySelector('.questions-container');
+    
+    // Add each question to this topic
+    topic.questions.forEach((question, qIndex) => {
+      const questionBlock = document.createElement('div');
+      questionBlock.className = 'question-block';
+      
+      questionBlock.innerHTML = `
+        <div class="sub-question-text">Question ${qIndex + 1}: ${question.text}</div>
+        <div class="options-group" data-topic="${topic.id}" data-qid="${question.id}">
+          ${Object.entries(question.options).map(([value, text]) => `
+            <label class="option-label">
+              <input type="radio" name="${topic.id}_${question.id}" value="${value}"> ${text}
+            </label>
+          `).join('')}
+        </div>
+      `;
+      
+      questionsContainer.appendChild(questionBlock);
+    });
+    
+    container.appendChild(topicWrapper);
   });
   
-  // Re-add submit button
+  // Add submit button
   const submitBtn = document.createElement('button');
   submitBtn.className = 'submit-btn';
   submitBtn.onclick = submitQuiz;
@@ -94,41 +122,73 @@ function toggleQuestion(header) {
   header.parentElement.classList.toggle('active');
 }
 
-function calculateScores(results) {
-  const scores = {};
-  
-  // Your proprietary scoring logic goes here
-  // Currently simple: use selected answer value as score
-  for (const [topicId, answerValue] of Object.entries(results)) {
-    const topic = quizData.find(t => t.id === topicId);
-    scores[topic ? `${topic.title}` : topicId] = parseInt(answerValue) || 0;
-  }
-  
-  return scores;
-}
-
+// Collect all responses organized by topic
 function collectResponses() {
   const responses = {};
   
   quizData.forEach(topic => {
-    const selected = document.querySelector(`input[name="${topic.id}"]:checked`);
-    responses[topic.id] = selected ? selected.value : 0;
+    responses[topic.id] = {};
+    
+    topic.questions.forEach(question => {
+      const selected = document.querySelector(`input[name="${topic.id}_${question.id}"]:checked`);
+      responses[topic.id][question.id] = selected ? parseInt(selected.value) : 0;
+    });
   });
   
   return responses;
 }
 
+// Calculate average score per topic
+function calculateScores(responses) {
+  const scores = {};
+  
+  quizData.forEach(topic => {
+    const topicResponses = responses[topic.id];
+    const questionIds = topic.questions.map(q => q.id);
+    
+    // Get all numeric values for this topic
+    const values = questionIds.map(qid => topicResponses[qid] || 0);
+    
+    // Calculate average (sum / count)
+    const sum = values.reduce((acc, val) => acc + val, 0);
+    const avg = values.length > 0 ? (sum / values.length) : 0;
+    
+    // Round to 1 decimal place for display
+    scores[topic.title] = Math.round(avg * 10) / 10;
+  });
+  
+  return scores;
+}
+
+// Submit quiz and display results
 function submitQuiz() {
   topicResults = collectResponses();
+  
+  // Validate all questions answered
+  let unansweredCount = 0;
+  quizData.forEach(topic => {
+    topic.questions.forEach(question => {
+      if (topicResults[topic.id][question.id] === 0) {
+        unansweredCount++;
+      }
+    });
+  });
+  
+  if (unansweredCount > 0) {
+    alert(`Please answer all questions before submitting. (${unansweredCount} remaining)`);
+    return;
+  }
+  
+  // Calculate averages
   const scores = calculateScores(topicResults);
   
   // Build results table
   const tbody = document.getElementById('resultsBody');
   tbody.innerHTML = '';
   
-  for (const [topic, score] of Object.entries(scores)) {
+  for (const [topic, averageScore] of Object.entries(scores)) {
     const row = document.createElement('tr');
-    row.innerHTML = `<td>${topic}</td><td>${score}</td>`;
+    row.innerHTML = `<td>${topic}</td><td>${averageScore}</td>`;
     tbody.appendChild(row);
   }
   
@@ -137,22 +197,17 @@ function submitQuiz() {
   document.getElementById('resultsContainer').style.display = 'block';
 }
 
+// Reset quiz
 function resetQuiz() {
-  // Deselect all radio buttons
   const radios = document.querySelectorAll('input[type="radio"]');
   radios.forEach(radio => radio.checked = false);
   
-  // Close all collapsed question cards
   const cards = document.querySelectorAll('.question-card');
   cards.forEach(card => card.classList.remove('active'));
   
-  // Reset topic results
   topicResults = {};
-  
-  // Scroll to top
   window.scrollTo({ top: 0, behavior: 'smooth' });
   
-  // Hide results, show quiz
   document.getElementById('resultsContainer').style.display = 'none';
   document.getElementById('quizContainer').classList.remove('hide');
 }
