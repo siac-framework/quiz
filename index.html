@@ -3,63 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quiz</title>
-  <!-- Link to external stylesheet -->
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <div class="quiz-container" id="quizContainer">
-  <!-- Topic 1 -->
-  <div class="question-card">
-    <div class="question-header" onclick="toggleQuestion(this)">
-      <span class="question-title">Topic 1: Introduction</span>
-      <span class="toggle-icon">▼</span>
-    </div>
-    <div class="question-content">
-      <div class="question-text">What is your name?</div>
-      <div class="options-group">
-        <label class="option-label">
-          <input type="radio" name="topic1" value="1"> Bob
-        </label>
-        <label class="option-label">
-          <input type="radio" name="topic1" value="2"> Joe
-        </label>
-        <label class="option-label">
-          <input type="radio" name="topic1" value="3"> Arthur, King of the Britons
-        </label>
-      </div>
-    </div>
-  </div>
-
-  <!-- Topic 2 -->
-  <div class="question-card">
-    <div class="question-header" onclick="toggleQuestion(this)">
-      <span class="question-title">Topic 2: Quest</span>
-      <div class="toggle-icon">▼</div>
-    </div>
-    <div class="question-content">
-      <div class="question-text">What is your quest?</div>
-      <div class="options-group">
-        <label class="option-label">
-          <input type="radio" name="topic2" value="1"> Nothing, really
-        </label>
-        <label class="option-label">
-          <input type="radio" name="topic2" value="2"> To find the Holy Grail
-        </label>
-        <label class="option-label">
-          <input type="radio" name="topic2" value="3"> I don't know
-        </label>
-      </div>
-    </div>
-  </div>
-
-  <button class="submit-btn" onclick="submitQuiz()">Submit Answers</button>
+  <!-- Questions rendered dynamically by JavaScript -->
 </div>
 
 <div class="results-container" id="resultsContainer">
@@ -71,84 +21,14 @@
         <th>Score</th>
       </tr>
     </thead>
-    <tbody id="resultsBody">
-      <!-- Populated by JavaScript -->
-    </tbody>
+    <tbody id="resultsBody"></tbody>
   </table>
   <button class="submit-btn" onclick="resetQuiz()" style="margin-top: 1rem; background: #2196f3;">
     Take Quiz Again ↻
   </button>
 </div>
 
-<script>
-  // Toggle question card expansion
-  function toggleQuestion(header) {
-    header.parentElement.classList.toggle('active');
-  }
+<script src="scripts.js"></script>
 
-  // Proprietary scoring logic (translate your Go logic here)
-  function calculateScores(topicResults) {
-    const scores = {};
-    
-    // Example logic - replace with your actual scoring algorithm
-    // Topic 1: Simple mapping (could be weighted differently)
-    scores['Topic 1'] = topicResults.topic1 || 0;
-    
-    // Topic 2: Could add custom logic
-    scores['Topic 2'] = topicResults.topic2 || 0;
-    
-    return scores;
-  }
-
-  // Reset quiz and show questions again
-function resetQuiz() {
-  // Deselect all radio buttons
-  const radios = document.querySelectorAll('input[type="radio"]');
-  radios.forEach(radio => {
-    radio.checked = false;
-  });
-
-  // Close all collapsed question cards (optional - keeps them tidy)
-  const cards = document.querySelectorAll('.question-card');
-  cards.forEach(card => {
-    card.classList.remove('active');
-  });
-
-  // Scroll to top of quiz
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-
-  // Hide results, show quiz
-  document.getElementById('resultsContainer').style.display = 'none';
-  document.getElementById('quizContainer').classList.remove('hide');
-}
-  // Submit quiz and show results
-  function submitQuiz() {
-    // Collect user responses
-    const topicResults = {
-      topic1: document.querySelector('input[name="topic1"]:checked')?.value || 0,
-      topic2: document.querySelector('input[name="topic2"]:checked')?.value || 0
-    };
-
-    // Calculate scores using your proprietary logic
-    const scores = calculateScores(topicResults);
-
-    // Build results table
-    const tbody = document.getElementById('resultsBody');
-    tbody.innerHTML = '';
-
-    for (const [topic, score] of Object.entries(scores)) {
-      const row = document.createElement('tr');
-      row.innerHTML = `<td>${topic}</td><td>${score}</td>`;
-      tbody.appendChild(row);
-    }
-
-    // Hide quiz, show results
-    document.getElementById('quizContainer').classList.add('hide');
-    document.getElementById('resultsContainer').style.display = 'block';
-  }
-</script>
-
-</body>
-</html>
 </body>
 </html>
