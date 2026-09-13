@@ -4,10 +4,6 @@
 // ===========================
 const quizData = [
       {
-        id: 'biblical_alignment',
-        title: 'Biblical Alignment',
-        questions: [
-          {
         id: 'bib_familiarity',
         title: 'Biblical Familiarity',
         questions: [
@@ -24,6 +20,10 @@ const quizData = [
           }
         ]
       },
+      {
+        id: 'biblical_alignment',
+        title: 'Biblical Alignment',
+        questions: [
       {
         id: 'q1',
         text: "The Council of Nicea (325 AD/CE) put together the current set of texts that is regarded by many to be the official Holy Bible. Which of these statements do you most resonate with?",
