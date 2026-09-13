@@ -1,16 +1,22 @@
-* { box-sizing: border-box; }
+/* ==========================================
+   GENERAL STYLES
+   ========================================== */
+* {
+  box-sizing: border-box;
+}
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background-color: #dff2fb;
-  background-image: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
   color: #333333;
   margin: 0;
   padding: 2rem 1rem;
   min-height: 100vh;
 }
 
-/* Header and Introduction */
+/* ==========================================
+   HEADER AND INTRODUCTION
+   ========================================== */
 .quiz-header {
   text-align: center;
   padding: 2rem 1rem 3rem;
@@ -33,20 +39,32 @@ body {
   font-style: italic;
 }
 
+/* ==========================================
+   QUIZ CONTAINER
+   ========================================== */
 .quiz-container {
   max-width: 600px;
   margin: 0 auto;
 }
 
-/* Collapsible Question Cards */
+/* ==========================================
+   QUESTION CARDS (Individual Questions)
+   ========================================== */
+.question-card {
   background: rgba(255, 255, 255, 0.6);
   border-radius: 8px;
   margin-bottom: 1rem;
   overflow: hidden;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s;
 }
 
+.question-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Question Header (Click to Expand/Collapse) */
 .question-header {
   padding: 1rem;
   cursor: pointer;
@@ -54,26 +72,32 @@ body {
   justify-content: space-between;
   align-items: center;
   transition: background 0.2s;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .question-header:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.03);
 }
 
-.question-title {
+.question-number {
   font-weight: bold;
-  font-size: 1.1rem;
+  font-size: 0.95rem;
+  color: #555;
 }
 
+/* Plus/Minus Toggle Icon */
 .toggle-icon {
-  font-size: 1.2rem;
-  transition: transform 0.3s;
+  font-size: 1.5rem;
+  transition: transform 0.2s, color 0.2s;
+  color: #666;
+  font-weight: bold;
 }
 
 .question-card.active .toggle-icon {
-  transform: rotate(180deg);
+  color: #333;
 }
 
+/* Expanded Question Content */
 .question-content {
   max-height: 0;
   overflow: hidden;
@@ -81,37 +105,21 @@ body {
 }
 
 .question-card.active .question-content {
-  max-height: 500px;
+  max-height: 1000px;
 }
 
+/* Individual Question Text (Shown When Expanded) */
 .question-text {
-  padding: 1rem;
-  padding-top: 0;
-}
-
-/* Topic question wrapper */
-.questions-container {
-  padding: 0.5rem;
-}
-
-.question-block {
-  margin-bottom: 1rem;
-  padding: 0.75rem;
-  background: rgba(255, 255, 255, 0.4);
-  border-radius: 6px;
-}
-
-.question-block:last-child {
-  margin-bottom: 0;
-}
-
-.sub-question-text {
-  font-weight: 500;
-  margin-bottom: 0.5rem;
-  color: #444;
+  padding: 1rem 1rem 0.5rem;
   font-size: 1rem;
+  color: #333;
+  line-height: 1.5;
+  font-weight: 500;
 }
 
+/* ==========================================
+   OPTIONS GROUP (Multiple Choice Answers)
+   ========================================== */
 .options-group {
   padding: 0 1rem 1rem;
   display: flex;
@@ -122,22 +130,33 @@ body {
 .option-label {
   display: block;
   padding: 0.75rem 1rem;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.5);
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.2s;
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .option-label:hover {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(0, 0, 0, 0.1);
 }
 
 .option-label input[type="radio"] {
   margin-right: 0.75rem;
   accent-color: #667eea;
+  cursor: pointer;
 }
 
-/* Submit Button */
+/* Selected Option Highlight */
+.option-label:has(input[type="radio"]:checked) {
+  background: rgba(102, 126, 234, 0.15);
+  border-color: #667eea;
+}
+
+/* ==========================================
+   SUBMIT BUTTON
+   ========================================== */
 .submit-btn {
   width: 100%;
   padding: 1rem;
@@ -157,15 +176,27 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-/* Results Table (hidden initially) */
+/* ==========================================
+   RESULTS CONTAINER (Hidden Initially)
+   ========================================== */
 .results-container {
   display: none;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.6);
   border-radius: 8px;
   padding: 2rem;
   backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 0 auto;
 }
 
+.results-container h2 {
+  margin-top: 0;
+  color: #2c3e50;
+  text-align: center;
+}
+
+/* Results Table */
 .results-table {
   width: 100%;
   border-collapse: collapse;
@@ -176,18 +207,98 @@ body {
 .results-table td {
   padding: 0.75rem;
   text-align: left;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .results-table th {
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.05);
   font-weight: bold;
+  color: #2c3e50;
 }
 
 .results-table tr:last-child td {
   border-bottom: none;
 }
 
+.results-table tr:hover {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+/* ==========================================
+   UTILITY CLASSES
+   ========================================== */
 .hide {
   display: none !important;
+}
+
+/* ==========================================
+   MOBILE RESPONSIVENESS
+   ========================================== */
+@media (max-width: 480px) {
+  body {
+    padding: 1rem 0.5rem;
+  }
+
+  .quiz-header {
+    padding: 1rem 0.5rem 2rem;
+  }
+
+  .quiz-header h1 {
+    font-size: 1.75rem;
+  }
+
+  .intro-text {
+    font-size: 1rem;
+  }
+
+  .question-header {
+    padding: 0.75rem;
+  }
+
+  .question-text {
+    padding: 0.75rem;
+    font-size: 0.95rem;
+  }
+
+  .options-group {
+    padding: 0 0.75rem 0.75rem;
+  }
+
+  .option-label {
+    padding: 0.6rem 0.75rem;
+  }
+
+  .submit-btn {
+    padding: 0.85rem;
+    font-size: 1rem;
+  }
+
+  .results-container {
+    padding: 1.5rem;
+  }
+
+  .results-table th,
+  .results-table td {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* ==========================================
+   ACCESSIBILITY IMPROVEMENTS
+   ========================================== */
+.question-header:focus-within,
+.option-label:focus-within,
+.submit-btn:focus {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+}
+
+/* Reduce motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .question-content,
+  .submit-btn,
+  .question-card {
+    transition: none;
+  }
 }
