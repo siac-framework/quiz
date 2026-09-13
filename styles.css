@@ -89,6 +89,29 @@ body {
   padding-top: 0;
 }
 
+/* Topic question wrapper */
+.questions-container {
+  padding: 0.5rem;
+}
+
+.question-block {
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 6px;
+}
+
+.question-block:last-child {
+  margin-bottom: 0;
+}
+
+.sub-question-text {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: #444;
+  font-size: 1rem;
+}
+
 .options-group {
   padding: 0 1rem 1rem;
   display: flex;
