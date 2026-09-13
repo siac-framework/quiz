@@ -17,7 +17,7 @@ const quizData = [
           3: 'The New Testament, excluding Revelations',
           4: 'Revelations',
           5: 'The Old Testament, excluding Psalms, Proverbs, and Song of Solomon',
-          6: 'Psalms, Proverbs, or Song of Solomon'
+          0: 'Psalms, Proverbs, or Song of Solomon'
         }
       },
       {
@@ -94,11 +94,10 @@ function renderFlattenedQuiz() {
     
     card.innerHTML = `
       <div class="question-header" onclick="toggleQuestion(this)">
-        <span class="question-number">Question ${index + 1}</span>
+        <span class="question-text-preview">${item.text}</span>
         <span class="toggle-icon">+</span>
       </div>
       <div class="question-content">
-        <div class="question-text">${item.text}</div>
         <div class="options-group" data-topic="${item.topicId}" data-qid="${item.questionId}">
           ${Object.entries(item.options).map(([value, text]) => `
             <label class="option-label">
