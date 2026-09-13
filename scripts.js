@@ -1,11 +1,12 @@
 // ===========================
 // QUIZ DATA CONFIGURATION
 // Each TOPIC can have MULTIPLE QUESTIONS
+// Topic IDs are used internally for scoring (not shown to user)
 // ===========================
 const quizData = [
   {
     id: 'biblical_alignment',
-    title: 'Biblical Alignment',
+    title: 'Biblical Alignment', // Internal only - not shown
     questions: [
       {
         id: 'q1',
@@ -33,7 +34,7 @@ const quizData = [
   },
   {
     id: 'topic2',
-    title: 'Topic 2',
+    title: 'Topic 2', // Internal only
     questions: [
       {
         id: 'q1',
@@ -49,61 +50,66 @@ const quizData = [
   // Add more topics here...
 ];
 
-// Store user responses: { topic_id: { q1: 'val', q2: 'val', ... } }
+// Flatten all questions into a single array for display
+let flattenedQuestions = [];
+
+// Store user responses: { topic_id_questionId: value }
 let topicResults = {};
 
 // ===========================
-// DOM GENERATION FUNCTIONS
+// INITIALIZATION
 // ===========================
 
-// Initialize quiz when page loads
 document.addEventListener('DOMContentLoaded', () => {
-  renderQuiz();
+  flattenAndRenderQuiz();
 });
 
-// Render all topic/question cards dynamically
-function renderQuiz() {
+// Flatten questions from all topics into a single list for display
+function flattenAndRenderQuiz() {
+  flattenedQuestions = [];
+  
+  quizData.forEach(topic => {
+    topic.questions.forEach(question => {
+      flattenedQuestions.push({
+        topicId: topic.id,      // Keep for scoring
+        topicTitle: topic.title, // Keep for scoring display
+        questionId: question.id,
+        text: question.text,
+        options: question.options
+      });
+    });
+  });
+  
+  renderFlattenedQuiz();
+}
+
+// Render each question as an individual card
+function renderFlattenedQuiz() {
   const container = document.getElementById('quizContainer');
   container.innerHTML = '';
   
-  quizData.forEach(topic => {
-    // Create a wrapper for the topic
-    const topicWrapper = document.createElement('div');
-    topicWrapper.className = 'question-card';
+  flattenedQuestions.forEach((item, index) => {
+    const card = document.createElement('div');
+    card.className = 'question-card';
     
-    // Topic header (collapsible)
-    topicWrapper.innerHTML = `
+    card.innerHTML = `
       <div class="question-header" onclick="toggleQuestion(this)">
-        <span class="question-title">${topic.title}</span>
-        <span class="toggle-icon">▼</span>
+        <span class="question-number">Question ${index + 1}</span>
+        <span class="toggle-icon">+</span>
       </div>
       <div class="question-content">
-        <div class="questions-container" data-topic="${topic.id}"></div>
-      </div>
-    `;
-    
-    const questionsContainer = topicWrapper.querySelector('.questions-container');
-    
-    // Add each question to this topic
-    topic.questions.forEach((question, qIndex) => {
-      const questionBlock = document.createElement('div');
-      questionBlock.className = 'question-block';
-      
-      questionBlock.innerHTML = `
-        <div class="sub-question-text">Question ${qIndex + 1}: ${question.text}</div>
-        <div class="options-group" data-topic="${topic.id}" data-qid="${question.id}">
-          ${Object.entries(question.options).map(([value, text]) => `
+        <div class="question-text">${item.text}</div>
+        <div class="options-group" data-topic="${item.topicId}" data-qid="${item.questionId}">
+          ${Object.entries(item.options).map(([value, text]) => `
             <label class="option-label">
-              <input type="radio" name="${topic.id}_${question.id}" value="${value}"> ${text}
+              <input type="radio" name="${item.topicId}_${item.questionId}" value="${value}"> ${text}
             </label>
           `).join('')}
         </div>
-      `;
-      
-      questionsContainer.appendChild(questionBlock);
-    });
+      </div>
+    `;
     
-    container.appendChild(topicWrapper);
+    container.appendChild(card);
   });
   
   // Add submit button
@@ -119,26 +125,36 @@ function renderQuiz() {
 // ===========================
 
 function toggleQuestion(header) {
-  header.parentElement.classList.toggle('active');
+  const card = header.parentElement;
+  const icon = header.querySelector('.toggle-icon');
+  
+  card.classList.toggle('active');
+  
+  // Change +/- based on state
+  if (card.classList.contains('active')) {
+    icon.textContent = '−';
+  } else {
+    icon.textContent = '+';
+  }
 }
 
-// Collect all responses organized by topic
 function collectResponses() {
   const responses = {};
   
-  quizData.forEach(topic => {
-    responses[topic.id] = {};
+  flattenedQuestions.forEach(item => {
+    const key = `${item.topicId}_${item.questionId}`;
+    const selected = document.querySelector(`input[name="${key}"]:checked`);
     
-    topic.questions.forEach(question => {
-      const selected = document.querySelector(`input[name="${topic.id}_${question.id}"]:checked`);
-      responses[topic.id][question.id] = selected ? parseInt(selected.value) : 0;
-    });
+    if (!responses[item.topicId]) {
+      responses[item.topicId] = {};
+    }
+    
+    responses[item.topicId][item.questionId] = selected ? parseInt(selected.value) : 0;
   });
   
   return responses;
 }
 
-// Calculate average score per topic
 function calculateScores(responses) {
   const scores = {};
   
@@ -146,32 +162,27 @@ function calculateScores(responses) {
     const topicResponses = responses[topic.id];
     const questionIds = topic.questions.map(q => q.id);
     
-    // Get all numeric values for this topic
     const values = questionIds.map(qid => topicResponses[qid] || 0);
-    
-    // Calculate average (sum / count)
     const sum = values.reduce((acc, val) => acc + val, 0);
     const avg = values.length > 0 ? (sum / values.length) : 0;
     
-    // Round to 1 decimal place for display
     scores[topic.title] = Math.round(avg * 10) / 10;
   });
   
   return scores;
 }
 
-// Submit quiz and display results
 function submitQuiz() {
   topicResults = collectResponses();
   
-  // Validate all questions answered
+  // Validation
   let unansweredCount = 0;
-  quizData.forEach(topic => {
-    topic.questions.forEach(question => {
-      if (topicResults[topic.id][question.id] === 0) {
-        unansweredCount++;
-      }
-    });
+  flattenedQuestions.forEach(item => {
+    const key = `${item.topicId}_${item.questionId}`;
+    const selected = document.querySelector(`input[name="${key}"]:checked`);
+    if (!selected) {
+      unansweredCount++;
+    }
   });
   
   if (unansweredCount > 0) {
@@ -179,7 +190,6 @@ function submitQuiz() {
     return;
   }
   
-  // Calculate averages
   const scores = calculateScores(topicResults);
   
   // Build results table
@@ -197,7 +207,6 @@ function submitQuiz() {
   document.getElementById('resultsContainer').style.display = 'block';
 }
 
-// Reset quiz
 function resetQuiz() {
   const radios = document.querySelectorAll('input[type="radio"]');
   radios.forEach(radio => radio.checked = false);
