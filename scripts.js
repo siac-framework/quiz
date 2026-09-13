@@ -1,6 +1,6 @@
 // ===========================
 // QUIZ DATA CONFIGURATION
-// Topics, questions, and options (using arrays for duplicate scores)
+// All 13 topics with questions and options
 // ===========================
 const quizData = [
   {
@@ -46,12 +46,29 @@ const quizData = [
           { score: 5, text: "All of the Bible is literally true, and I follow all the rules and guidelines to the best of my ability in our modern society." },
           { score: 6, text: "All of the Bible is literally true, and because there are so many things in modern society that are not in alignment with Biblical values, I either stand out as odd in society or I feel I can practice my faith better by living apart from most of society." }
         ]
+      },
+      {
+        id: 'q2',
+        text: "Do you believe God approves of different kinds of sins as a means to an end, if the final goal is something you think God values? (Examples: lying, twisting the truth, withholding truth, cheating, controlling or withholding resources, etc., as long as I'm not breaking any state or federal laws)",
+        options: [
+          { score: 10, text: "Yes -- I think God will forgive me if I did" },
+          { score: 0, text: "No -- I trust that God is able to work everything out according to his own plan and doesn't need me to interfere, especially if I have to sin to do it" },
+          { score: 0, text: "No, Jesus is not ok with me purposely sinning even if I think it will bring about something good. I take Heb 10:24, Gal 2:17, and Col 3:17 seriously. Plus it could make me look like a hypocrite to people I need to witness to" }
+        ]
+      },
+      {
+        id: 'q3',
+        text: "Do you believe God would approve of you breaking a law as a means to an end, if the final goal is something you think God values? (Examples: stealing, fraud, libel, lying in paperwork or in a legal case, vandalism, money laundering, etc.)",
+        options: [
+          { score: 10, text: "Yes, God would approve" },
+          { score: 0, text: "No, God would not approve" }
+        ]
       }
     ]
   },
   {
     id: 'bib_auth_others_souls',
-    title: 'Biblical Authority: Other people\'s Souls',
+    title: "Biblical Authority: Other People's Souls",
     questions: [
       {
         id: 'q1',
@@ -119,7 +136,7 @@ const quizData = [
   },
   {
     id: 'bib_auth_others_phys',
-    title: 'Biblical Authority: Other people\'s Bodies',
+    title: "Biblical Authority: Other People's Bodies",
     questions: [
       {
         id: 'q1',
@@ -142,10 +159,11 @@ const quizData = [
       },
       {
         id: 'q3',
-        text: "In the past one to two years, have you protested (or wanted to) to express disapproval of abortion, LGBTQ+ issues, or issues about evolution or prayer in public schools?",
+        text: "Let's say there's an American woman who believes that part of her unalienable rights to Life, Liberty, and the pursuit of Happiness includes a right to legally join households and finances with another consenting adult woman and raise a family, or that another American woman believes that the sanctity of her own life is more important than the first trimester life in her womb. These are beliefs and also fall under an unalienable right to life or liberty or happiness. Do you think that laws against gay marriage and against abortion prevent the free exercise of beliefs for the example women?",
         options: [
-          { score: 5, text: "Yes" },
-          { score: 2, text: "No" }
+          { score: 1, text: "Yes, these women's rights are violated if the laws are based on the beliefs from someone else's religion" },
+          { score: 2, text: "Yes. Abortions can be necessary to save a mother's life. I'm not sure why people mix up 'marriage' as a spiritual ceremony when talking about a set of legal rules for couples and families -- they are separate issues" },
+          { score: 5, text: "No. Marriage is from the Bible, and is defined as being one man and one woman. Abortion is murder because the baby is living and the mother is planning to kill it. Gay marriage and abortion aren't rights that anyone should have." }
         ]
       }
     ]
@@ -217,6 +235,123 @@ const quizData = [
           { score: 3, text: "No, I didn't know this was possible, but maybe I should" },
           { score: 4, text: "No, I trust them to wisely use the money I donate, whether for church upkeep or sending some of it to other non profits (whether political or not)" },
           { score: 5, text: "Yes" }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'leader',
+    title: 'Relationship to a Leader',
+    questions: [
+      {
+        id: 'q1',
+        text: "Do you have a pastor, priest, church leader, or other person who helps shape what your spiritual values and beliefs are? Would you ever feel confident to ask questions or ask for a discussion if there are issues of faith or spiritual values you disagree about or feel uncomfortable about?",
+        options: [
+          { score: 1, text: "No, I'm really just a solo practitioner" },
+          { score: 2, text: "Yes -- I am interested and challenged by my leader, but I don't always agree with their opinions. I look to other sources for shaping my spiritual beliefs and values even if I respect my leader." },
+          { score: 3, text: "Yes -- I have a leader who I have respect and admiration for and generally always agree with, while I still see him or her as a spiritual peer even if they are a pastor or priest. My leader is still human and fallible, and I have engaged with them to question things I disagree about." },
+          { score: 4, text: "Yes -- I really admire my leader and feel it's important to respect their authority and to submit to their teachings since they are the experts. I'm sure I could have a discussion if they every happened to teach something I disagree with, but I'd be more nervous about getting tongue-tied talking with them because I like and respect them so much." },
+          { score: 5, text: "Yes -- I have found a leader who is so inspired by God and so close to God that I want to learn everything I can from them. If they teach things or talk about things that go against what the Bible says, it's probably because they are so close to God that they have new updates from God to all of us. It's so exciting to be part of this group of Christians who are hearing the newest stuff from God!" },
+          { score: 6, text: "Yes -- I have found a leader who is so inspired by God and so close to God that I want to learn everything I can from them. To prove how serious I am about my faith, I may be asked to do things that feel confusing or wrong, but I have to trust it's for a good reason in the end. I might need to move away from friends and family, or stop talking to them entirely. I might need to be secretive or be entrusted with secrets. I might need to only read or watch informational content that my leader provides. I really need to show my loyalty for this leader and our group." }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'political',
+    title: 'Political Affiliation',
+    questions: [
+      {
+        id: 'q1',
+        text: "Do you vote?",
+        options: [
+          { score: 1, text: "No -- I don't like or care about politics, or I don't like to put my focus on things that are negative" },
+          { score: 1, text: "No -- the system is rigged since you only have two choices" },
+          { score: 1, text: "No -- the Bible instructs me to submit to government authorities, not to become an authority by voting in a democracy" },
+          { score: 1, text: "No -- the Bible says that only God is Judge. My vote is the same as casting judgement about what is good or bad in a society. Also, Christians should not be judges or elected representatives because they would have to make judgements" },
+          { score: 0, text: "Yes -- I vote" }
+        ]
+      },
+      {
+        id: 'q2',
+        text: "Should Christians help the needy and the struggling only through donating to churches and religious organizations? Or should Christians help the needy and the struggling through paying taxes as well as personal donations?",
+        options: [
+          { score: 1, text: "Christians should not rely on the state to help the needy, they should vote against it and instead donate to religious institutions or nonprofits so those groups can help the needy." },
+          { score: 2, text: "Christians can donate to organizations to help the needy, but it is also efficient (and even Christlike) to pay taxes and vote to have the government run programs to help the needy." }
+        ]
+      },
+      {
+        id: 'q3',
+        text: "Do you have an opinion on whether you'd like the federal government to collect taxes and use them for government-managed programs like Social Security, Medicaid/Medicare, disaster relief, and public schools?",
+        options: [
+          { score: 3, text: "I don't think the government is efficient with my tax dollars, so I don't think the government should manage programs like this" },
+          { score: 3, text: "I think these are communist or socialist programs and I don't want my taxes going to fund communism or socialism" },
+          { score: 2, text: "I think the biggest strength of the United States is the ability to collect tax money from all the states (with widely varying GDP) in a big pot so that it can be used by any of the states for different kinds of disaster relief and support programs, as well as ensuring all citizens are educated enough to make good decisions at the ballot and live successful lives that contribute to the state and national GDP." }
+        ]
+      },
+      {
+        id: 'q4',
+        text: "In the past few years, have you used your right to vote as a way of expressing disapproval of any of these issues: LGBTQ+ issues, abortion, evolution or prayer in public schools?",
+        options: [
+          { score: 10, text: "Yes" },
+          { score: 0, text: "No" }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'persecution',
+    title: 'Religious Persecution',
+    questions: [
+      {
+        id: 'q1',
+        text: "Do you feel Christians are persecuted due their religious beliefs (Examples: can be screened out of job searches or lose jobs, be kicked out of rental homes or denied home loans, jailed for expressing their beliefs, experience acts of violence while minding their own business)?",
+        options: [
+          { score: 1, text: "Christians do not face persecution in the US, and actually they have more Privilege and rights compared to other groups" },
+          { score: 1, text: "Christians do not face persecution in the US" },
+          { score: 2, text: "Christians occasionally face minor religious persecution in the US" },
+          { score: 3, text: "Christians face major religious persecution in the US" },
+          { score: 3, text: "Christians are persecuted for their beliefs in the US more than other kinds of groups (Muslims, Jews, LGBTQ+, People of Color, people with disabilities)" }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'authoritarian',
+    title: 'Christian Authoritarianism and Christian Fascism',
+    questions: [
+      {
+        id: 'q1',
+        text: "Do you believe that the US started as a Christian Nation?",
+        options: [
+          { score: 5, text: "Yes -- all of the founding fathers were Christians, and were trying to escape religious persecution from Britain, so the US did start as a Christian nation" },
+          { score: 1, text: "No" },
+          { score: 1, text: "No -- in fact, in 100+ the years before the US declared independence, only 1 small colony was a specifically religious colony and all the others were mercantile colonies (and the Pilgrims were not the first colony). The writers of the Constitution were of varying beliefs, including Diests. They modeled our government structure and architecture after the pagans of ancient Greece and ancient Rome. Many of the founding fathers worked to use sacred pagan geometry to lay out the capital city" }
+        ]
+      },
+      {
+        id: 'q2',
+        text: "Even though the US Constitution is explicit that Congress cannot make a law that establishes a national religion or make laws that prevent people from practicing their religions, do you think the US government should declare a national religion that is some form of Christian?",
+        options: [
+          { score: 5, text: "Yes -- we need to reclaim the fact that we started as a Christian nation" },
+          { score: 5, text: "Yes -- we might as well because the majority of Americans are Christian anyway" },
+          { score: 1, text: "No -- it goes against everything our Founders intended" },
+          { score: 1, text: "No -- that's dangerous because it could be used against Christians later if a different religion is declared as the national religion, or if some denomination is declared as the only true religion (then we might end up with persecution or civil wars about denominations or Protestant vs Catholic" }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'racism',
+    title: 'Racism',
+    questions: [
+      {
+        id: 'q1',
+        text: "Which of the following mostly describes your feelings about people with darker versus lighter skin colors?",
+        options: [
+          { score: 1, text: "I believe that God created all humans to have all the same capacities across ethnicities or skin colors. There are no ethnicities where the whole group is somehow better, smarter, more capable, or more favored by God than other ethnic groups." },
+          { score: 2, text: "Even though the 12 disciples and all the original Christians were ethnically and religiously Jewish, and Jesus told them to go spread the good news to all nations, I believe that God made Caucasian people to be better than people who are not, and that white Christians are inherently better at being Christians than non-white Christians." },
+          { score: 3, text: "Only people who are Caucasian can be saved." }
         ]
       }
     ]
@@ -328,119 +463,200 @@ function collectResponses() {
 }
 
 // ===========================
+// HELPER FUNCTIONS
+// ===========================
+
+function getNonZeroValues(values) {
+  return values.filter(v => v !== 0 && v !== undefined && v !== null);
+}
+
+function hasValidAnswers(values) {
+  return values.some(v => v !== 0 && v !== undefined && v !== null);
+}
+
+// ===========================
 // CUSTOM SCORING LOGIC
 // ===========================
 
 function calculateScores(responses) {
   const scores = {};
+  const scoresWithValidity = {};
   
-  // Helper: filter out zeros from values
-  function getNonZeroValues(values) {
-    return values.filter(v => v !== 0 && v !== undefined && v !== null);
-  }
-  
-  // Topic 1: BIBLICAL ALIGNMENT
-  // Logic: If any answer = 4, return 4. If all answers same, return that value. If different, prefer Q1.
+  // --- TOPIC 1: BIBLICAL ALIGNMENT ---
   const bibAlignQ1 = responses['biblical_alignment']?.q1 || 0;
   const bibAlignQ2 = responses['biblical_alignment']?.q2 || 0;
   const bibAlignValues = [bibAlignQ1, bibAlignQ2];
+  const bibAlignHasAnswers = hasValidAnswers(bibAlignValues);
   const nonZeroBibAlign = getNonZeroValues(bibAlignValues);
   
+  let bibAlignScore = 0;
   if (bibAlignValues.includes(4)) {
-    scores['Biblical Alignment'] = 4;
-  } else if (nonZeroBibAlign.length === 0) {
-    scores['Biblical Alignment'] = 0;
+    bibAlignScore = 4;
+  } else if (!bibAlignHasAnswers) {
+    bibAlignScore = 0;
   } else if (new Set(nonZeroBibAlign).size === 1) {
-    // All non-zero values are the same
-    scores['Biblical Alignment'] = nonZeroBibAlign[0];
+    bibAlignScore = nonZeroBibAlign[0];
   } else {
-    // Values differ - prefer first question
-    scores['Biblical Alignment'] = bibAlignQ1;
+    bibAlignScore = bibAlignQ1;
   }
   
-  // Topic 2: BIB AUTH FOR SELF
-  // Logic: Direct pass-through (single question)
+  scores['Biblical Alignment'] = bibAlignScore;
+  scoresWithValidity['Biblical Alignment'] = bibAlignHasAnswers;
+  
+  // --- TOPIC 2: BIB AUTH FOR SELF ---
   const bibAuthSelfQ1 = responses['bib_auth_for_self']?.q1 || 0;
-  scores['Biblical Authority: My Body and Soul'] = bibAuthSelfQ1;
+  const bibAuthSelfQ2 = responses['bib_auth_for_self']?.q2 || 0;
+  const bibAuthSelfQ3 = responses['bib_auth_for_self']?.q3 || 0;
+  const bibAuthSelfHasAnswers = bibAuthSelfQ1 !== 0;
   
-  // Topic 3: BIB AUTH OTHERS SOULS
-  // Logic: Direct pass-through (single question)
+  let bibAuthSelfScore = bibAuthSelfQ1;
+  // Override: Q2=10 AND Q1=5 → change to 4
+  if (bibAuthSelfQ2 === 10 && bibAuthSelfQ1 === 5) {
+    bibAuthSelfScore = 4;
+  }
+  
+  scores['Biblical Authority: My Body and Soul'] = bibAuthSelfScore;
+  scoresWithValidity['Biblical Authority: My Body and Soul'] = bibAuthSelfHasAnswers;
+  
+  // --- TOPIC 3: BIB AUTH OTHERS SOULS ---
   const bibAuthOthersSoulsQ1 = responses['bib_auth_others_souls']?.q1 || 0;
-  scores['Biblical Authority: Other people\'s Souls'] = bibAuthOthersSoulsQ1;
+  scores['Biblical Authority: Other People\'s Souls'] = bibAuthOthersSoulsQ1;
+  scoresWithValidity['Biblical Authority: Other People\'s Souls'] = bibAuthOthersSoulsQ1 !== 0;
   
-  // Topic 4: EVANGELISM
-  // Logic: Direct pass-through (single question)
+  // --- TOPIC 4: EVANGELISM ---
   const evangelismQ1 = responses['evangelism']?.q1 || 0;
   scores['Evangelism'] = evangelismQ1;
+  scoresWithValidity['Evangelism'] = evangelismQ1 !== 0;
   
-  // Topic 5: MOTIVATIONAL ALIGNMENT
-  // Logic: Maximum value from all questions
+  // --- TOPIC 5: MOTIVATIONAL ALIGNMENT ---
   const motAlignQ1 = responses['motivational_alignment']?.q1 || 0;
   const motAlignQ2 = responses['motivational_alignment']?.q2 || 0;
   const motAlignQ3 = responses['motivational_alignment']?.q3 || 0;
-  const motAlignValues = [motAlignQ1, motAlignQ2, motAlignQ3].filter(v => v !== 0);
-  scores['Motivational Alignment'] = motAlignValues.length > 0 ? Math.max(...motAlignValues) : 0;
+  const motAlignValues = [motAlignQ1, motAlignQ2, motAlignQ3];
+  const motAlignHasAnswers = hasValidAnswers(motAlignValues);
+  const nonZeroMotAlign = getNonZeroValues(motAlignValues);
+  let motAlignScore = motAlignHasAnswers ? Math.max(...nonZeroMotAlign) : 0;
   
-  // Topic 6: SPIRITUAL WARFARE
-  // Logic: Maximum value from all questions
+  // CROSS-TOPIC OVERRIDE FROM POLITICAL: If Political Q2=1, raise motivational to 4 if < 4
+  const politicalQ2 = responses['political']?.q2 || 0;
+  if (politicalQ2 === 1 && motAlignScore < 4) {
+    motAlignScore = 4;
+  }
+  
+  scores['Motivational Alignment'] = motAlignScore;
+  scoresWithValidity['Motivational Alignment'] = motAlignHasAnswers;
+  
+  // --- TOPIC 6: SPIRITUAL WARFARE ---
   const spiritWarfareQ1 = responses['spiritual_warfare']?.q1 || 0;
   const spiritWarfareQ2 = responses['spiritual_warfare']?.q2 || 0;
-  const spiritWarfareValues = [spiritWarfareQ1, spiritWarfareQ2].filter(v => v !== 0);
-  scores['Spiritual Warfare'] = spiritWarfareValues.length > 0 ? Math.max(...spiritWarfareValues) : 0;
+  const spiritWarfareValues = [spiritWarfareQ1, spiritWarfareQ2];
+  const spiritWarfareHasAnswers = hasValidAnswers(spiritWarfareValues);
+  const nonZeroSpiritWarfare = getNonZeroValues(spiritWarfareValues);
+  scores['Spiritual Warfare'] = spiritWarfareHasAnswers ? Math.max(...nonZeroSpiritWarfare) : 0;
+  scoresWithValidity['Spiritual Warfare'] = spiritWarfareHasAnswers;
   
-  // Topic 7: CHURCH
-  // Logic: Maximum value from all questions
+  // --- TOPIC 7: CHURCH ---
   const churchQ1 = responses['church']?.q1 || 0;
   const churchQ2 = responses['church']?.q2 || 0;
   const churchQ3 = responses['church']?.q3 || 0;
   const churchQ4 = responses['church']?.q4 || 0;
-  const churchValues = [churchQ1, churchQ2, churchQ3, churchQ4].filter(v => v !== 0);
-  scores['Relationship to a church or parish'] = churchValues.length > 0 ? Math.max(...churchValues) : 0;
+  const churchValues = [churchQ1, churchQ2, churchQ3, churchQ4];
+  const churchHasAnswers = hasValidAnswers(churchValues);
+  const nonZeroChurch = getNonZeroValues(churchValues);
+  scores['Relationship to a church or parish'] = churchHasAnswers ? Math.max(...nonZeroChurch) : 0;
+  scoresWithValidity['Relationship to a church or parish'] = churchHasAnswers;
   
-  // Topic 8: BIB AUTH OTHERS PHYS
-  // Logic: Highest value + overrides (check bib_auth_for_self=1 → force 1; check motivation_Q3=5 → force 6)
+  // --- TOPIC 8: LEADER ---
+  const leaderQ1 = responses['leader']?.q1 || 0;
+  scores['Relationship to a Leader'] = leaderQ1;
+  scoresWithValidity['Relationship to a Leader'] = leaderQ1 !== 0;
+  
+  // --- TOPIC 9: POLITICAL ---
+  const politicalQ1 = responses['political']?.q1 || 0;
+  const politicalQ2Val = responses['political']?.q2 || 0;
+  const politicalQ3 = responses['political']?.q3 || 0;
+  const politicalQ4 = responses['political']?.q4 || 0;
+  const politicalValuesForMax = [politicalQ1, politicalQ2Val, politicalQ3].filter(v => v !== 0);
+  const politicalHasAnswers = hasValidAnswers([politicalQ1, politicalQ2Val, politicalQ3]);
+  
+  let politicalScore = 1; // Default if Q1=1
+  if (politicalQ1 === 1) {
+    politicalScore = 1;
+  } else if (politicalHasAnswers) {
+    politicalScore = Math.max(...politicalValuesForMax);
+  } else {
+    politicalScore = 0;
+  }
+  
+  // Override: If max=2 AND Q4=10, set to 4
+  if (politicalScore === 2 && politicalQ4 === 10) {
+    politicalScore = 4;
+  }
+  
+  scores['Political Affiliation'] = politicalScore;
+  scoresWithValidity['Political Affiliation'] = politicalHasAnswers;
+  
+  // --- TOPIC 10: PERSECUTION ---
+  const persecutionQ1 = responses['persecution']?.q1 || 0;
+  scores['Religious Persecution'] = persecutionQ1;
+  scoresWithValidity['Religious Persecution'] = persecutionQ1 !== 0;
+  
+  // --- TOPIC 11: AUTHORITARIAN ---
+  const authoritarianQ1 = responses['authoritarian']?.q1 || 0;
+  const authoritarianQ2 = responses['authoritarian']?.q2 || 0;
+  const authoritarianValues = [authoritarianQ1, authoritarianQ2];
+  const authoritarianHasAnswers = hasValidAnswers(authoritarianValues);
+  const nonZeroAuthoritarian = getNonZeroValues(authoritarianValues);
+  scores['Christian Authoritarianism and Christian Fascism'] = authoritarianHasAnswers ? Math.max(...nonZeroAuthoritarian) : 0;
+  scoresWithValidity['Christian Authoritarianism and Christian Fascism'] = authoritarianHasAnswers;
+  
+  // --- TOPIC 12: RACISM ---
+  const racismQ1 = responses['racism']?.q1 || 0;
+  scores['Racism'] = racismQ1;
+  scoresWithValidity['Racism'] = racismQ1 !== 0;
+  
+  // --- TOPIC 13: BIB AUTH OTHERS PHYS (WITH ALL OVERRIDES) ---
   const bibAuthPhysQ1 = responses['bib_auth_others_phys']?.q1 || 0;
   const bibAuthPhysQ2 = responses['bib_auth_others_phys']?.q2 || 0;
   const bibAuthPhysQ3 = responses['bib_auth_others_phys']?.q3 || 0;
-  const bibAuthPhysValues = [bibAuthPhysQ1, bibAuthPhysQ2, bibAuthPhysQ3].filter(v => v !== 0);
-  let bibAuthPhysScore = bibAuthPhysValues.length > 0 ? Math.max(...bibAuthPhysValues) : 0;
+  const bibAuthPhysValues = [bibAuthPhysQ1, bibAuthPhysQ2, bibAuthPhysQ3];
+  const bibAuthPhysHasAnswers = hasValidAnswers(bibAuthPhysValues);
+  const nonZeroBibAuthPhys = getNonZeroValues(bibAuthPhysValues);
+  let bibAuthPhysScore = bibAuthPhysHasAnswers ? Math.max(...nonZeroBibAuthPhys) : 0;
   
-  // Override #1: If bib_auth_for_self = 1, force to 1
-  if (scores['Biblical Authority: My Body and Soul'] === 1) {
+  // Override Order Matters:
+  // 1. If bib_auth_for_self Q1 = 1 → force to 1 (lowest priority)
+  if (bibAuthSelfQ1 === 1) {
     bibAuthPhysScore = 1;
   }
   
-  // Override #2: If motivation_Q3 = 5 (Yes), force to 6
+  // 2. If bib_auth_for_self Q3 = 10 → force to 6
+  if (bibAuthSelfQ3 === 10) {
+    bibAuthPhysScore = 6;
+  }
+  
+  // 3. If motivational Q3 = 5 → force to 6
   if (motAlignQ3 === 5) {
     bibAuthPhysScore = 6;
   }
   
-  scores['Biblical Authority: Other people\'s Bodies'] = bibAuthPhysScore;
+  // 4. If authoritarian calculated → force to 5 if < 5
+  if (authoritarianHasAnswers && bibAuthPhysScore < 5) {
+    bibAuthPhysScore = 5;
+  }
   
-  return scores;
+  scores['Biblical Authority: Other People\'s Bodies'] = bibAuthPhysScore;
+  scoresWithValidity['Biblical Authority: Other People\'s Bodies'] = bibAuthPhysHasAnswers || bibAuthSelfQ1 === 1 || bibAuthSelfQ3 === 10 || motAlignQ3 === 5 || authoritarianHasAnswers;
+  
+  return { scores, scoresWithValidity };
 }
 
 // Submit quiz and display results
 function submitQuiz() {
   topicResults = collectResponses();
   
-  // Validation: Check all questions answered
-  let unansweredCount = 0;
-  flattenedQuestions.forEach(item => {
-    const key = `${item.topicId}_${item.questionId}`;
-    const selected = document.querySelector(`input[name="${key}"]:checked`);
-    if (!selected) {
-      unansweredCount++;
-    }
-  });
-  
-  if (unansweredCount > 0) {
-    alert(`Please answer all questions before submitting. (${unansweredCount} remaining)`);
-    return;
-  }
-  
-  // Calculate scores using custom logic
-  const scores = calculateScores(topicResults);
+  // Calculate scores using custom logic (returns both scores and validity)
+  const { scores, scoresWithValidity } = calculateScores(topicResults);
   
   // Build results table
   const tbody = document.getElementById('resultsBody');
@@ -448,7 +664,16 @@ function submitQuiz() {
   
   for (const [topic, score] of Object.entries(scores)) {
     const row = document.createElement('tr');
-    row.innerHTML = `<td>${topic}</td><td>${score}</td>`;
+    
+    // Check if this topic has valid answers
+    const hasAnswers = scoresWithValidity[topic];
+    
+    if (hasAnswers) {
+      row.innerHTML = `<td>${topic}</td><td>${score}</td>`;
+    } else {
+      row.innerHTML = `<td>${topic}</td><td>Not enough answers to calculate</td>`;
+    }
+    
     tbody.appendChild(row);
   }
   
