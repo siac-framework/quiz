@@ -3,25 +3,270 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hello World</title>
+  <title>Quiz</title>
   <style>
+    * { box-sizing: border-box; }
+    
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      margin: 0;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: white;
+      margin: 0;
+      padding: 2rem 1rem;
+      min-height: 100vh;
     }
-    h1 {
-      font-size: 3rem;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+
+    .quiz-container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Collapsible Question Cards */
+    .question-card {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+
+    .question-header {
+      padding: 1rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.2s;
+    }
+
+    .question-header:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .question-title {
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    .toggle-icon {
+      font-size: 1.2rem;
+      transition: transform 0.3s;
+    }
+
+    .question-card.active .toggle-icon {
+      transform: rotate(180deg);
+    }
+
+    .question-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+
+    .question-card.active .question-content {
+      max-height: 500px;
+    }
+
+    .question-text {
+      padding: 1rem;
+      padding-top: 0;
+    }
+
+    .options-group {
+      padding: 0 1rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .option-label {
+      display: block;
+      padding: 0.75rem 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .option-label:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .option-label input[type="radio"] {
+      margin-right: 0.75rem;
+      accent-color: #667eea;
+    }
+
+    /* Submit Button */
+    .submit-btn {
+      width: 100%;
+      padding: 1rem;
+      margin-top: 2rem;
+      background: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Results Table (hidden initially) */
+    .results-container {
+      display: none;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      padding: 2rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .results-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    .results-table th,
+    .results-table td {
+      padding: 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .results-table th {
+      background: rgba(0, 0, 0, 0.2);
+      font-weight: bold;
+    }
+
+    .results-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .hide {
+      display: none !important;
     }
   </style>
 </head>
 <body>
-  <h1>Hello, World! 👋</h1>
+
+<div class="quiz-container" id="quizContainer">
+  <!-- Topic 1 -->
+  <div class="question-card">
+    <div class="question-header" onclick="toggleQuestion(this)">
+      <span class="question-title">Topic 1: Introduction</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="question-content">
+      <div class="question-text">What is your name?</div>
+      <div class="options-group">
+        <label class="option-label">
+          <input type="radio" name="topic1" value="1"> Bob
+        </label>
+        <label class="option-label">
+          <input type="radio" name="topic1" value="2"> Joe
+        </label>
+        <label class="option-label">
+          <input type="radio" name="topic1" value="3"> Arthur, King of the Britons
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Topic 2 -->
+  <div class="question-card">
+    <div class="question-header" onclick="toggleQuestion(this)">
+      <span class="question-title">Topic 2: Quest</span>
+      <div class="toggle-icon">▼</div>
+    </div>
+    <div class="question-content">
+      <div class="question-text">What is your quest?</div>
+      <div class="options-group">
+        <label class="option-label">
+          <input type="radio" name="topic2" value="1"> Nothing, really
+        </label>
+        <label class="option-label">
+          <input type="radio" name="topic2" value="2"> To find the Holy Grail
+        </label>
+        <label class="option-label">
+          <input type="radio" name="topic2" value="3"> I don't know
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <button class="submit-btn" onclick="submitQuiz()">Submit Answers</button>
+</div>
+
+<!-- Results Container -->
+<div class="results-container" id="resultsContainer">
+  <h2>Your Results</h2>
+  <table class="results-table">
+    <thead>
+      <tr>
+        <th>Topic</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+    <tbody id="resultsBody">
+      <!-- Populated by JavaScript -->
+    </tbody>
+  </table>
+</div>
+
+<script>
+  // Toggle question card expansion
+  function toggleQuestion(header) {
+    header.parentElement.classList.toggle('active');
+  }
+
+  // Proprietary scoring logic (translate your Go logic here)
+  function calculateScores(topicResults) {
+    const scores = {};
+    
+    // Example logic - replace with your actual scoring algorithm
+    // Topic 1: Simple mapping (could be weighted differently)
+    scores['Topic 1'] = topicResults.topic1 || 0;
+    
+    // Topic 2: Could add custom logic
+    scores['Topic 2'] = topicResults.topic2 || 0;
+    
+    return scores;
+  }
+
+  // Submit quiz and show results
+  function submitQuiz() {
+    // Collect user responses
+    const topicResults = {
+      topic1: document.querySelector('input[name="topic1"]:checked')?.value || 0,
+      topic2: document.querySelector('input[name="topic2"]:checked')?.value || 0
+    };
+
+    // Calculate scores using your proprietary logic
+    const scores = calculateScores(topicResults);
+
+    // Build results table
+    const tbody = document.getElementById('resultsBody');
+    tbody.innerHTML = '';
+
+    for (const [topic, score] of Object.entries(scores)) {
+      const row = document.createElement('tr');
+      row.innerHTML = `<td>${topic}</td><td>${score}</td>`;
+      tbody.appendChild(row);
+    }
+
+    // Hide quiz, show results
+    document.getElementById('quizContainer').classList.add('hide');
+    document.getElementById('resultsContainer').style.display = 'block';
+  }
+</script>
+
+</body>
+</html>
 </body>
 </html>
