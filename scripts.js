@@ -3,10 +3,27 @@
 // All 13 topics with questions and options
 // ===========================
 const quizData = [
-  {
-    id: 'biblical_alignment',
-    title: 'Biblical Alignment',
-    questions: [
+      {
+        id: 'biblical_alignment',
+        title: 'Biblical Alignment',
+        questions: [
+          {
+        id: 'bib_familiarity',
+        title: 'Biblical Familiarity',
+        questions: [
+          {
+            id: 'q1',
+            text: "Which response best describes your interaction with the Bible in the last 1-2 years?",
+            options: [
+              { score: 1, text: "I may or may not have a Bible of my own, but I don't read the Bible myself. I hear Bible verses at church/mass or from a spiritual leader" },
+              { score: 2, text: "I crack open the Bible a couple times a year, but I usually hear Bible verses at church/mass or from a spiritual leader" },
+              { score: 3, text: "I may or may not have a Bible of my own, but when I read the Bible it's usually from a workbook (like \"Ten Great Women of the Bible\") or from church handouts or church publishers" },
+              { score: 4, text: "In addition to church/mass, I read my own Bible multiple times a week" },
+              { score: 5, text: "In addition to church/mass, and reading the Bible on my own multiple times a week, I also have companion guides for original languages of the Bible or can read the ancient languages directly." }
+            ]
+          }
+        ]
+      },
       {
         id: 'q1',
         text: "The Council of Nicea (325 AD/CE) put together the current set of texts that is regarded by many to be the official Holy Bible. Which of these statements do you most resonate with?",
