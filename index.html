@@ -239,6 +239,27 @@
     return scores;
   }
 
+  // Reset quiz and show questions again
+function resetQuiz() {
+  // Deselect all radio buttons
+  const radios = document.querySelectorAll('input[type="radio"]');
+  radios.forEach(radio => {
+    radio.checked = false;
+  });
+
+  // Close all collapsed question cards (optional - keeps them tidy)
+  const cards = document.querySelectorAll('.question-card');
+  cards.forEach(card => {
+    card.classList.remove('active');
+  });
+
+  // Scroll to top of quiz
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // Hide results, show quiz
+  document.getElementById('resultsContainer').style.display = 'none';
+  document.getElementById('quizContainer').classList.remove('hide');
+}
   // Submit quiz and show results
   function submitQuiz() {
     // Collect user responses
