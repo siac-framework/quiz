@@ -85,7 +85,7 @@ const quizData = [
   },
   {
     id: 'bib_auth_others_souls',
-    title: "Biblical Authority: Others' Souls",
+    title: "Biblical Authority: Other peoples' Souls",
     questions: [
       {
         id: 'q1',
@@ -153,7 +153,7 @@ const quizData = [
   },
   {
     id: 'bib_auth_others_phys',
-    title: "Biblical Authority: Others' Bodies",
+    title: "Biblical Authority: Others peoples' Bodies",
     questions: [
       {
         id: 'q1',
@@ -604,8 +604,8 @@ function calculateScores(responses) {
   };
   
   const authoritarianLabels = {
-    1: 'Secular Nation',
-    5: 'Christian Nation'
+    1: 'Lover of Democracy',
+    5: 'Christian Authoritarian or Christian Fascist'
   };
   
   // --- TOPIC 1: BIBLICAL FAMILIARITY ---
