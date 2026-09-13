@@ -1,29 +1,29 @@
 // ===========================
 // QUIZ DATA CONFIGURATION
-// All 13 topics with questions and options
+// All 14 topics with questions and options
 // ===========================
 const quizData = [
+  {
+    id: 'bib_familiarity',
+    title: 'Biblical Familiarity',
+    questions: [
       {
-        id: 'bib_familiarity',
-        title: 'Biblical Familiarity',
-        questions: [
-          {
-            id: 'q1',
-            text: "Which response best describes your interaction with the Bible in the last 1-2 years?",
-            options: [
-              { score: 1, text: "I may or may not have a Bible of my own, but I don't read the Bible myself. I hear Bible verses at church/mass or from a spiritual leader" },
-              { score: 2, text: "I crack open the Bible a couple times a year, but I usually hear Bible verses at church/mass or from a spiritual leader" },
-              { score: 3, text: "I may or may not have a Bible of my own, but when I read the Bible it's usually from a workbook (like \"Ten Great Women of the Bible\") or from church handouts or church publishers" },
-              { score: 4, text: "In addition to church/mass, I read my own Bible multiple times a week" },
-              { score: 5, text: "In addition to church/mass, and reading the Bible on my own multiple times a week, I also have companion guides for original languages of the Bible or can read the ancient languages directly." }
-            ]
-          }
+        id: 'q1',
+        text: "Which response best describes your interaction with the Bible in the last 1-2 years?",
+        options: [
+          { score: 1, text: "I may or may not have a Bible of my own, but I don't read the Bible myself. I hear Bible verses at church/mass or from a spiritual leader" },
+          { score: 2, text: "I crack open the Bible a couple times a year, but I usually hear Bible verses at church/mass or from a spiritual leader" },
+          { score: 3, text: "I may or may not have a Bible of my own, but when I read the Bible it's usually from a workbook (like \"Ten Great Women of the Bible\") or from church handouts or church publishers" },
+          { score: 4, text: "In addition to church/mass, I read my own Bible multiple times a week" },
+          { score: 5, text: "In addition to church/mass, and reading the Bible on my own multiple times a week, I also have companion guides for original languages of the Bible or can read the ancient languages directly." }
         ]
-      },
-      {
-        id: 'biblical_alignment',
-        title: 'Biblical Alignment',
-        questions: [
+      }
+    ]
+  },
+  {
+    id: 'biblical_alignment',
+    title: 'Biblical Alignment',
+    questions: [
       {
         id: 'q1',
         text: "The Council of Nicea (325 AD/CE) put together the current set of texts that is regarded by many to be the official Holy Bible. Which of these statements do you most resonate with?",
@@ -50,7 +50,7 @@ const quizData = [
   },
   {
     id: 'bib_auth_for_self',
-    title: 'Biblical Authority: My Body and Soul',
+    title: 'Biblical Authority: My Body & Soul',
     questions: [
       {
         id: 'q1',
@@ -85,7 +85,7 @@ const quizData = [
   },
   {
     id: 'bib_auth_others_souls',
-    title: "Biblical Authority: Other People's Souls",
+    title: "Biblical Authority: Others' Souls",
     questions: [
       {
         id: 'q1',
@@ -153,7 +153,7 @@ const quizData = [
   },
   {
     id: 'bib_auth_others_phys',
-    title: "Biblical Authority: Other People's Bodies",
+    title: "Biblical Authority: Others' Bodies",
     questions: [
       {
         id: 'q1',
@@ -213,7 +213,7 @@ const quizData = [
   },
   {
     id: 'church',
-    title: 'Relationship to a church or parish',
+    title: 'Relationship to a Church',
     questions: [
       {
         id: 'q1',
@@ -276,7 +276,7 @@ const quizData = [
   },
   {
     id: 'political',
-    title: 'Political Affiliation',
+    title: 'Political Alignment',
     questions: [
       {
         id: 'q1',
@@ -335,7 +335,7 @@ const quizData = [
   },
   {
     id: 'authoritarian',
-    title: 'Christian Authoritarianism and Christian Fascism',
+    title: 'Christian Authoritarianism',
     questions: [
       {
         id: 'q1',
@@ -497,9 +497,124 @@ function hasValidAnswers(values) {
 
 function calculateScores(responses) {
   const scores = {};
+  const scoresLabels = {};
   const scoresWithValidity = {};
   
-  // --- TOPIC 1: BIBLICAL ALIGNMENT ---
+  // === LABEL MAPS (FULL PHRASES) ===
+  const bibFamiliarityLabels = {
+    1: 'Osmosist: Never or basically never reads the Bible',
+    2: 'Osmosist: Rarely to sometimes reads the Bible',
+    3: 'Indirect: Getting info about the Bible from handouts or guides',
+    4: 'Committed: Reads Bible outside church/mass',
+    5: 'Researcher: Reads Bible often, and uses ancient languages to check context'
+  };
+  
+  const biblicalAlignmentLabels = {
+    1: 'Gospels: Only the Gospels are a source of Truth',
+    2: 'Red Letter: Only Jesus\'s words are a source of Truth',
+    3: 'New Testament: Only the NT is a source of Truth and laws',
+    4: 'Old Testament: The Old Testament is the preferred source of truth and laws',
+    5: 'Cherry Picker: All parts of the Bible are equally true and I can pick from any of the laws'
+  };
+  
+  const bibAuthForSelfLabels = {
+    1: 'Idealist: Just likes the ideals of Christ',
+    2: 'Good Bookist: Bible has good stories and morals, but I don\'t have to follow them',
+    3: 'Honorist: The Bible has important teachings, but also it\'s old and can\'t be relied on',
+    4: 'Partial Literalist: Some parts of the Bible are to be followed literally and some aren\'t',
+    5: 'Literalist: The whole Bible is literal, and I follow it the best I can',
+    6: 'Literalist Separatists: To follow the Bible faithfully, I have to be apart from most of society'
+  };
+  
+  const bibAuthOthersSoulsLabels = {
+    1: 'Many Paths: Many Paths up the Mountain and all are equal',
+    2: 'Good People: Good People end up in Heaven',
+    3: 'Christ Only: Christ is the Only Way, for everyone'
+  };
+  
+  const motivationalLabels = {
+    1: 'None: my faith doesn\'t motivate me to police others',
+    2: 'Live and Let Live: God is Judge, I\'m not motivated to police others',
+    3: 'Concern: I feel compelled to intervene when a Body or Soul could be in danger (according to my definition of danger)',
+    4: 'Control/Conformity: motivated to intervene because of what the Bible says, or my pastor/priest says, or because it\'s my culture',
+    5: 'Hate/Disgust: motivated to intervene because something is unnatural or disgusting (according to my definitions)'
+  };
+  
+  const evangelismLabels = {
+    1: 'No one needs saving',
+    2: 'Not Evangelical: not my place, not my job, not my expertise, or Calvinist',
+    3: 'Mild/Moderately Evangelical: Jesus might need my other skills more',
+    4: 'Life-Purpose Evangelical: The only purpose of a Christian\'s life is to help save souls',
+    5: 'Missionary: Above and beyond personal relationships'
+  };
+  
+  const spiritualWarfareLabels = {
+    1: 'None: didn\'t cross my mind, or there isn\'t a war like that',
+    2: 'Maybe Angels: Angels- Yes! Demons- I guess so',
+    3: 'Not My War: It\'s between God and Satan',
+    4: 'Spiritual War + Prayer: it\'s real and I can fight by praying and remaining mentally strong and Non-Violent',
+    5: 'Spiritual War + Demonic Possession: It\'s real and I can fight it by praying and casting out demons',
+    6: 'Spiritual War + Physical Violence: It\'s real and I can help Jesus come back by physically or financially supporting Israeli wars'
+  };
+  
+  const churchLabels = {
+    1: 'Solo Practitioner',
+    2: 'Cultural',
+    3: 'Casual Community',
+    4: 'Integrated Community',
+    5: 'Invested/Serving/Leading'
+  };
+  
+  const leaderLabels = {
+    1: 'No Leader',
+    2: 'Generally respected leader: still weighs other sources to shape values/beliefs',
+    3: 'Admired Leader, Spiritual Peer: Can question a spiritual peer and still be inspired',
+    4: 'Adoration and Submission: Authority/hierarchy is important, but more awe and inspiration',
+    5: 'Leader over Bible: follow the leader even when in conflict with the Bible',
+    6: 'Cult: the leader of a cult uses methods of control (of behavior, information, thought, and emotions) to replace a person\'s free will with obedience and replace their individuality with dependency. This can include using secrecy, deception, manipulation, sexual pressure or rape, or violence. It often includes shunning or harassing individuals who leave the group. -Dr. Steven Hasan\'s BITE model'
+  };
+  
+  const politicalLabels = {
+    1: 'Non-Voter',
+    2: 'Liberal who votes Democrat',
+    3: 'Conservative who votes Republican',
+    4: 'Liberal who votes Republican (Liberal Hostages)',
+    5: 'Conservative who votes Democrat'
+  };
+  
+  const persecutionLabels = {
+    1: 'Christians are not persecuted',
+    2: 'Christians occasionally face minor persecution',
+    3: 'Christians actively face major persecution'
+  };
+  
+  const racismLabels = {
+    1: 'Christianity is for everyone, and all people are created equal',
+    2: 'Christianity is for everyone, but white people are better',
+    3: 'Christianity is only for White people'
+  };
+  
+  const bibAuthOthersPhysLabels = {
+    1: 'None: the Bible isn\'t an authority for me, so it\'s not an authority for anyone else',
+    2: 'Live and Let Live: The Bible is my authority, but I let God be the Judge of everyone else',
+    3: 'Peer-Only-Policer: The Bible is an authority to me and other Christians, but it shouldn\'t be imposed on people who aren\'t Christians yet',
+    4: 'Open Season Policing: The Bible is true for everyone, even if they don\'t think so',
+    5: 'Christian Authoritarian: The US is or should be a Christian nation, and the rules of the Bible should be turned into laws',
+    6: 'Vigilantes & Criminals: Breaking the law or committing violence in the name of God'
+  };
+  
+  const authoritarianLabels = {
+    1: 'Secular Nation',
+    5: 'Christian Nation'
+  };
+  
+  // --- TOPIC 1: BIBLICAL FAMILIARITY ---
+  const bibFamiliarityQ1 = responses['bib_familiarity']?.q1 || 0;
+  scores['Biblical Familiarity'] = bibFamiliarityQ1;
+  scoresLabels['Biblical Familiarity'] = bibFamiliarityLabels[bibFamiliarityQ1] || '';
+  scoresWithValidity['Biblical Familiarity'] = bibFamiliarityQ1 !== 0;
+  
+  // --- TOPIC 2: BIBLICAL ALIGNMENT ---
   const bibAlignQ1 = responses['biblical_alignment']?.q1 || 0;
   const bibAlignQ2 = responses['biblical_alignment']?.q2 || 0;
   const bibAlignValues = [bibAlignQ1, bibAlignQ2];
@@ -518,32 +633,29 @@ function calculateScores(responses) {
   }
   
   scores['Biblical Alignment'] = bibAlignScore;
+  scoresLabels['Biblical Alignment'] = biblicalAlignmentLabels[bibAlignScore] || '';
   scoresWithValidity['Biblical Alignment'] = bibAlignHasAnswers;
   
-  // --- TOPIC 2: BIB AUTH FOR SELF ---
+  // --- TOPIC 3: BIB AUTH FOR SELF ---
   const bibAuthSelfQ1 = responses['bib_auth_for_self']?.q1 || 0;
   const bibAuthSelfQ2 = responses['bib_auth_for_self']?.q2 || 0;
   const bibAuthSelfQ3 = responses['bib_auth_for_self']?.q3 || 0;
   const bibAuthSelfHasAnswers = bibAuthSelfQ1 !== 0;
   
   let bibAuthSelfScore = bibAuthSelfQ1;
-  // Override: Q2=10 AND Q1=5 → change to 4
   if (bibAuthSelfQ2 === 10 && bibAuthSelfQ1 === 5) {
     bibAuthSelfScore = 4;
   }
   
-  scores['Biblical Authority: My Body and Soul'] = bibAuthSelfScore;
-  scoresWithValidity['Biblical Authority: My Body and Soul'] = bibAuthSelfHasAnswers;
+  scores['Biblical Authority: My Body & Soul'] = bibAuthSelfScore;
+  scoresLabels['Biblical Authority: My Body & Soul'] = bibAuthForSelfLabels[bibAuthSelfScore] || '';
+  scoresWithValidity['Biblical Authority: My Body & Soul'] = bibAuthSelfHasAnswers;
   
-  // --- TOPIC 3: BIB AUTH OTHERS SOULS ---
+  // --- TOPIC 4: BIB AUTH OTHERS SOULS ---
   const bibAuthOthersSoulsQ1 = responses['bib_auth_others_souls']?.q1 || 0;
-  scores['Biblical Authority: Other People\'s Souls'] = bibAuthOthersSoulsQ1;
-  scoresWithValidity['Biblical Authority: Other People\'s Souls'] = bibAuthOthersSoulsQ1 !== 0;
-  
-  // --- TOPIC 4: EVANGELISM ---
-  const evangelismQ1 = responses['evangelism']?.q1 || 0;
-  scores['Evangelism'] = evangelismQ1;
-  scoresWithValidity['Evangelism'] = evangelismQ1 !== 0;
+  scores['Biblical Authority: Others\' Souls'] = bibAuthOthersSoulsQ1;
+  scoresLabels['Biblical Authority: Others\' Souls'] = bibAuthOthersSoulsLabels[bibAuthOthersSoulsQ1] || '';
+  scoresWithValidity['Biblical Authority: Others\' Souls'] = bibAuthOthersSoulsQ1 !== 0;
   
   // --- TOPIC 5: MOTIVATIONAL ALIGNMENT ---
   const motAlignQ1 = responses['motivational_alignment']?.q1 || 0;
@@ -554,25 +666,34 @@ function calculateScores(responses) {
   const nonZeroMotAlign = getNonZeroValues(motAlignValues);
   let motAlignScore = motAlignHasAnswers ? Math.max(...nonZeroMotAlign) : 0;
   
-  // CROSS-TOPIC OVERRIDE FROM POLITICAL: If Political Q2=1, raise motivational to 4 if < 4
   const politicalQ2 = responses['political']?.q2 || 0;
   if (politicalQ2 === 1 && motAlignScore < 4) {
     motAlignScore = 4;
   }
   
   scores['Motivational Alignment'] = motAlignScore;
+  scoresLabels['Motivational Alignment'] = motivationalLabels[motAlignScore] || '';
   scoresWithValidity['Motivational Alignment'] = motAlignHasAnswers;
   
-  // --- TOPIC 6: SPIRITUAL WARFARE ---
+  // --- TOPIC 6: EVANGELISM ---
+  const evangelismQ1 = responses['evangelism']?.q1 || 0;
+  scores['Evangelism'] = evangelismQ1;
+  scoresLabels['Evangelism'] = evangelismLabels[evangelismQ1] || '';
+  scoresWithValidity['Evangelism'] = evangelismQ1 !== 0;
+  
+  // --- TOPIC 7: SPIRITUAL WARFARE ---
   const spiritWarfareQ1 = responses['spiritual_warfare']?.q1 || 0;
   const spiritWarfareQ2 = responses['spiritual_warfare']?.q2 || 0;
   const spiritWarfareValues = [spiritWarfareQ1, spiritWarfareQ2];
   const spiritWarfareHasAnswers = hasValidAnswers(spiritWarfareValues);
   const nonZeroSpiritWarfare = getNonZeroValues(spiritWarfareValues);
-  scores['Spiritual Warfare'] = spiritWarfareHasAnswers ? Math.max(...nonZeroSpiritWarfare) : 0;
+  const spiritWarfareScore = spiritWarfareHasAnswers ? Math.max(...nonZeroSpiritWarfare) : 0;
+  
+  scores['Spiritual Warfare'] = spiritWarfareScore;
+  scoresLabels['Spiritual Warfare'] = spiritualWarfareLabels[spiritWarfareScore] || '';
   scoresWithValidity['Spiritual Warfare'] = spiritWarfareHasAnswers;
   
-  // --- TOPIC 7: CHURCH ---
+  // --- TOPIC 8: CHURCH ---
   const churchQ1 = responses['church']?.q1 || 0;
   const churchQ2 = responses['church']?.q2 || 0;
   const churchQ3 = responses['church']?.q3 || 0;
@@ -580,15 +701,19 @@ function calculateScores(responses) {
   const churchValues = [churchQ1, churchQ2, churchQ3, churchQ4];
   const churchHasAnswers = hasValidAnswers(churchValues);
   const nonZeroChurch = getNonZeroValues(churchValues);
-  scores['Relationship to a church or parish'] = churchHasAnswers ? Math.max(...nonZeroChurch) : 0;
-  scoresWithValidity['Relationship to a church or parish'] = churchHasAnswers;
+  const churchScore = churchHasAnswers ? Math.max(...nonZeroChurch) : 0;
   
-  // --- TOPIC 8: LEADER ---
+  scores['Relationship to a Church'] = churchScore;
+  scoresLabels['Relationship to a Church'] = churchLabels[churchScore] || '';
+  scoresWithValidity['Relationship to a Church'] = churchHasAnswers;
+  
+  // --- TOPIC 9: LEADER ---
   const leaderQ1 = responses['leader']?.q1 || 0;
   scores['Relationship to a Leader'] = leaderQ1;
+  scoresLabels['Relationship to a Leader'] = leaderLabels[leaderQ1] || '';
   scoresWithValidity['Relationship to a Leader'] = leaderQ1 !== 0;
   
-  // --- TOPIC 9: POLITICAL ---
+  // --- TOPIC 10: POLITICAL ---
   const politicalQ1 = responses['political']?.q1 || 0;
   const politicalQ2Val = responses['political']?.q2 || 0;
   const politicalQ3 = responses['political']?.q3 || 0;
@@ -596,7 +721,7 @@ function calculateScores(responses) {
   const politicalValuesForMax = [politicalQ1, politicalQ2Val, politicalQ3].filter(v => v !== 0);
   const politicalHasAnswers = hasValidAnswers([politicalQ1, politicalQ2Val, politicalQ3]);
   
-  let politicalScore = 1; // Default if Q1=1
+  let politicalScore = 1;
   if (politicalQ1 === 1) {
     politicalScore = 1;
   } else if (politicalHasAnswers) {
@@ -605,34 +730,39 @@ function calculateScores(responses) {
     politicalScore = 0;
   }
   
-  // Override: If max=2 AND Q4=10, set to 4
   if (politicalScore === 2 && politicalQ4 === 10) {
     politicalScore = 4;
   }
   
-  scores['Political Affiliation'] = politicalScore;
-  scoresWithValidity['Political Affiliation'] = politicalHasAnswers;
+  scores['Political Alignment'] = politicalScore;
+  scoresLabels['Political Alignment'] = politicalLabels[politicalScore] || '';
+  scoresWithValidity['Political Alignment'] = politicalHasAnswers;
   
-  // --- TOPIC 10: PERSECUTION ---
+  // --- TOPIC 11: PERSECUTION ---
   const persecutionQ1 = responses['persecution']?.q1 || 0;
   scores['Religious Persecution'] = persecutionQ1;
+  scoresLabels['Religious Persecution'] = persecutionLabels[persecutionQ1] || '';
   scoresWithValidity['Religious Persecution'] = persecutionQ1 !== 0;
   
-  // --- TOPIC 11: AUTHORITARIAN ---
+  // --- TOPIC 12: AUTHORITARIAN ---
   const authoritarianQ1 = responses['authoritarian']?.q1 || 0;
   const authoritarianQ2 = responses['authoritarian']?.q2 || 0;
   const authoritarianValues = [authoritarianQ1, authoritarianQ2];
   const authoritarianHasAnswers = hasValidAnswers(authoritarianValues);
   const nonZeroAuthoritarian = getNonZeroValues(authoritarianValues);
-  scores['Christian Authoritarianism and Christian Fascism'] = authoritarianHasAnswers ? Math.max(...nonZeroAuthoritarian) : 0;
-  scoresWithValidity['Christian Authoritarianism and Christian Fascism'] = authoritarianHasAnswers;
+  const authoritarianScore = authoritarianHasAnswers ? Math.max(...nonZeroAuthoritarian) : 0;
   
-  // --- TOPIC 12: RACISM ---
+  scores['Christian Authoritarianism'] = authoritarianScore;
+  scoresLabels['Christian Authoritarianism'] = authoritarianLabels[authoritarianScore] || '';
+  scoresWithValidity['Christian Authoritarianism'] = authoritarianHasAnswers;
+  
+  // --- TOPIC 13: RACISM ---
   const racismQ1 = responses['racism']?.q1 || 0;
   scores['Racism'] = racismQ1;
+  scoresLabels['Racism'] = racismLabels[racismQ1] || '';
   scoresWithValidity['Racism'] = racismQ1 !== 0;
   
-  // --- TOPIC 13: BIB AUTH OTHERS PHYS (WITH ALL OVERRIDES) ---
+  // --- TOPIC 14: BIB AUTH OTHERS PHYS ---
   const bibAuthPhysQ1 = responses['bib_auth_others_phys']?.q1 || 0;
   const bibAuthPhysQ2 = responses['bib_auth_others_phys']?.q2 || 0;
   const bibAuthPhysQ3 = responses['bib_auth_others_phys']?.q3 || 0;
@@ -662,39 +792,45 @@ function calculateScores(responses) {
     bibAuthPhysScore = 5;
   }
   
-  scores['Biblical Authority: Other People\'s Bodies'] = bibAuthPhysScore;
-  scoresWithValidity['Biblical Authority: Other People\'s Bodies'] = bibAuthPhysHasAnswers || bibAuthSelfQ1 === 1 || bibAuthSelfQ3 === 10 || motAlignQ3 === 5 || authoritarianHasAnswers;
+  scores['Biblical Authority: Others\' Bodies'] = bibAuthPhysScore;
+  scoresLabels['Biblical Authority: Others\' Bodies'] = bibAuthOthersPhysLabels[bibAuthPhysScore] || '';
+  scoresWithValidity['Biblical Authority: Others\' Bodies'] = bibAuthPhysHasAnswers || bibAuthSelfQ1 === 1 || bibAuthSelfQ3 === 10 || motAlignQ3 === 5 || authoritarianHasAnswers;
   
-  return { scores, scoresWithValidity };
+  return { scores, scoresLabels, scoresWithValidity };
 }
 
 // Submit quiz and display results
 function submitQuiz() {
   topicResults = collectResponses();
   
-  // Calculate scores using custom logic (returns both scores and validity)
-  const { scores, scoresWithValidity } = calculateScores(topicResults);
+  const { scores, scoresLabels, scoresWithValidity } = calculateScores(topicResults);
   
-  // Build results table
   const tbody = document.getElementById('resultsBody');
   tbody.innerHTML = '';
   
   for (const [topic, score] of Object.entries(scores)) {
     const row = document.createElement('tr');
     
-    // Check if this topic has valid answers
     const hasAnswers = scoresWithValidity[topic];
+    const label = scoresLabels[topic];
     
     if (hasAnswers) {
-      row.innerHTML = `<td>${topic}</td><td>${score}</td>`;
+      row.innerHTML = `
+        <td>${topic}</td>
+        <td>${score}</td>
+        <td>${label}</td>
+      `;
     } else {
-      row.innerHTML = `<td>${topic}</td><td>Not enough answers to calculate</td>`;
+      row.innerHTML = `
+        <td>${topic}</td>
+        <td>-</td>
+        <td>Not enough answers to calculate</td>
+      `;
     }
     
     tbody.appendChild(row);
   }
   
-  // Hide quiz, show results
   document.getElementById('quizContainer').classList.add('hide');
   document.getElementById('resultsContainer').style.display = 'block';
 }
