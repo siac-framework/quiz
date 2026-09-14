@@ -99,18 +99,35 @@ const quizData = [
     ]
   },
   {
-    id: 'evangelism',
-    title: 'Evangelism',
+    id: 'bib_auth_others_phys',
+    title: "Biblical Authority: Other peoples' Bodies",
     questions: [
       {
         id: 'q1',
-        text: "Does your spiritual path require you to try and convert others to become Christians?",
+        text: "Do you feel there is a difference between intervening in someone's life depending on whether they are Christians or not?",
         options: [
-          { score: 1, text: "Nope -- technically no one needs saving" },
-          { score: 2, text: "Christianity is the only true path, but it's not up to me to convert people" },
-          { score: 3, text: "Christianity is the only true path, and it's important to spread the gospel, but I think it's more important for me to use my talents and special skills to just help people rather than trying to convert them (saving lives as a doctor, feeding the poor, etc.)" },
-          { score: 4, text: "As soon as I became a Christian, the whole point of my life is to live every moment for trying to win others over to Christ. As Galatians 2:20 says 'I have been crucified with Christ; and it is no longer I who live, but Christ lives in me'" },
-          { score: 5, text: "Not only is the whole point of my life to win others over to Christ, I feel I need to do more. I engage in ongoing efforts to convert others that is above and beyond personal relationships with colleagues or friends, such as being in special outreach events (miming, plays, going door to door) or going on yearly mission trips, or being a full time missionary or pastor." }
+          { score: 5, text: "The values and standards of the Bible are God's values, and his values are for everyone, so I would intervene with anyone." },
+          { score: 2, text: "God isn't about rules, He's about love. I'm not going to intervene in anyone's life, but I'm gonna love them no matter what choices they make." },
+          { score: 3, text: "The Bible shows over and over that the standards and values of God only apply to people once they are Christians, so I only intervene with fellow Christians." }
+        ]
+      },
+      {
+        id: 'q2',
+        text: "Do you feel that all people in the US should behave according to the rules or standards in the Bible that you find true and relevant (regardless of whether they are Christians or not)?",
+        options: [
+          { score: 2, text: "No -- enforcing the religious values of one group onto everyone is a violation of everyone's freedom of belief and freedom of practice" },
+          { score: 3, text: "No -- forcing my values onto people who aren't Christians could have the opposite effect of pushing them away from becoming Christians. It's best to make sure laws aren't based in Christian values so non-Christians don't have additional barriers to overcome when I'm trying to convert them." },
+          { score: 4, text: "Yes -- the values of the Bible are good for everyone" },
+          { score: 5, text: "Yes -- Not only should we expect everyone to behave according to God's good rules, we should go back to having things like Sodomy Laws and make new laws that can be used by police and the judicial system to punish or rehabilitate violators." }
+        ]
+      },
+      {
+        id: 'q3',
+        text: "Let's say there's an American woman who believes that part of her unalienable rights to Life, Liberty, and the pursuit of Happiness includes a right to legally join households and finances with another consenting adult woman and raise a family, or that another American woman believes that the sanctity of her own life is more important than the first trimester life in her womb. These are beliefs and also fall under an unalienable right to life or liberty or happiness. Do you think that laws against gay marriage and against abortion prevent the free exercise of beliefs for the example women?",
+        options: [
+          { score: 1, text: "Yes, these women's rights are violated if the laws are based on the beliefs from someone else's religion" },
+          { score: 2, text: "Yes. Abortions can be necessary to save a mother's life. I'm not sure why people mix up 'marriage' as a spiritual ceremony when talking about a set of legal rules for couples and families -- they are separate issues" },
+          { score: 5, text: "No. Marriage is from the Bible, and is defined as being one man and one woman. Abortion is murder because the baby is living and the mother is planning to kill it. Gay marriage and abortion aren't rights that anyone should have." }
         ]
       }
     ]
@@ -152,35 +169,18 @@ const quizData = [
     ]
   },
   {
-    id: 'bib_auth_others_phys',
-    title: "Biblical Authority: Others peoples' Bodies",
+    id: 'evangelism',
+    title: 'Evangelism',
     questions: [
       {
         id: 'q1',
-        text: "Do you feel there is a difference between intervening in someone's life depending on whether they are Christians or not?",
+        text: "Does your spiritual path require you to try and convert others to become Christians?",
         options: [
-          { score: 5, text: "The values and standards of the Bible are God's values, and his values are for everyone, so I would intervene with anyone." },
-          { score: 2, text: "God isn't about rules, He's about love. I'm not going to intervene in anyone's life, but I'm gonna love them no matter what choices they make." },
-          { score: 3, text: "The Bible shows over and over that the standards and values of God only apply to people once they are Christians, so I only intervene with fellow Christians." }
-        ]
-      },
-      {
-        id: 'q2',
-        text: "Do you feel that all people in the US should behave according to the rules or standards in the Bible that you find true and relevant (regardless of whether they are Christians or not)?",
-        options: [
-          { score: 2, text: "No -- enforcing the religious values of one group onto everyone is a violation of everyone's freedom of belief and freedom of practice" },
-          { score: 3, text: "No -- forcing my values onto people who aren't Christians could have the opposite effect of pushing them away from becoming Christians. It's best to make sure laws aren't based in Christian values so non-Christians don't have additional barriers to overcome when I'm trying to convert them." },
-          { score: 4, text: "Yes -- the values of the Bible are good for everyone" },
-          { score: 5, text: "Yes -- Not only should we expect everyone to behave according to God's good rules, we should go back to having things like Sodomy Laws and make new laws that can be used by police and the judicial system to punish or rehabilitate violators." }
-        ]
-      },
-      {
-        id: 'q3',
-        text: "Let's say there's an American woman who believes that part of her unalienable rights to Life, Liberty, and the pursuit of Happiness includes a right to legally join households and finances with another consenting adult woman and raise a family, or that another American woman believes that the sanctity of her own life is more important than the first trimester life in her womb. These are beliefs and also fall under an unalienable right to life or liberty or happiness. Do you think that laws against gay marriage and against abortion prevent the free exercise of beliefs for the example women?",
-        options: [
-          { score: 1, text: "Yes, these women's rights are violated if the laws are based on the beliefs from someone else's religion" },
-          { score: 2, text: "Yes. Abortions can be necessary to save a mother's life. I'm not sure why people mix up 'marriage' as a spiritual ceremony when talking about a set of legal rules for couples and families -- they are separate issues" },
-          { score: 5, text: "No. Marriage is from the Bible, and is defined as being one man and one woman. Abortion is murder because the baby is living and the mother is planning to kill it. Gay marriage and abortion aren't rights that anyone should have." }
+          { score: 1, text: "Nope -- technically no one needs saving" },
+          { score: 2, text: "Christianity is the only true path, but it's not up to me to convert people" },
+          { score: 3, text: "Christianity is the only true path, and it's important to spread the gospel, but I think it's more important for me to use my talents and special skills to just help people rather than trying to convert them (saving lives as a doctor, feeding the poor, etc.)" },
+          { score: 4, text: "As soon as I became a Christian, the whole point of my life is to live every moment for trying to win others over to Christ. As Galatians 2:20 says 'I have been crucified with Christ; and it is no longer I who live, but Christ lives in me'" },
+          { score: 5, text: "Not only is the whole point of my life to win others over to Christ, I feel I need to do more. I engage in ongoing efforts to convert others that is above and beyond personal relationships with colleagues or friends, such as being in special outreach events (miming, plays, going door to door) or going on yearly mission trips, or being a full time missionary or pastor." }
         ]
       }
     ]
@@ -373,6 +373,27 @@ const quizData = [
       }
     ]
   }
+];
+
+// ===================================
+// TOPIC ORDER FOR RESULTS TABLE
+// This defines the EXACT order topics appear in results
+// ===================================
+const TOPIC_ORDER = [
+  'Biblical Familiarity',
+  'Biblical Alignment',
+  'Biblical Authority: My Body & Soul',
+  "Biblical Authority: Other peoples' Souls",
+  "Biblical Authority: Other peoples' Bodies",
+  'Motivational Alignment',
+  'Evangelism',
+  'Spiritual Warfare',
+  'Relationship to a Church',
+  'Relationship to a Leader',
+  'Political Alignment',
+  'Religious Persecution',
+  'Christian Authoritarianism',
+  'Racism'
 ];
 
 // Flatten all questions into a single array for display
@@ -604,8 +625,8 @@ function calculateScores(responses) {
   };
   
   const authoritarianLabels = {
-    1: 'Lover of Democracy',
-    5: 'Christian Authoritarian or Christian Fascist'
+    1: 'Secular Nation',
+    5: 'Christian Nation'
   };
   
   // --- TOPIC 1: BIBLICAL FAMILIARITY ---
@@ -653,11 +674,20 @@ function calculateScores(responses) {
   
   // --- TOPIC 4: BIB AUTH OTHERS SOULS ---
   const bibAuthOthersSoulsQ1 = responses['bib_auth_others_souls']?.q1 || 0;
-  scores['Biblical Authority: Others\' Souls'] = bibAuthOthersSoulsQ1;
-  scoresLabels['Biblical Authority: Others\' Souls'] = bibAuthOthersSoulsLabels[bibAuthOthersSoulsQ1] || '';
-  scoresWithValidity['Biblical Authority: Others\' Souls'] = bibAuthOthersSoulsQ1 !== 0;
+  scores["Biblical Authority: Other peoples' Souls"] = bibAuthOthersSoulsQ1;
+  scoresLabels["Biblical Authority: Other peoples' Souls"] = bibAuthOthersSoulsLabels[bibAuthOthersSoulsQ1] || '';
+  scoresWithValidity["Biblical Authority: Other peoples' Souls"] = bibAuthOthersSoulsQ1 !== 0;
   
-  // --- TOPIC 5: MOTIVATIONAL ALIGNMENT ---
+  // --- TOPIC 5: BIB AUTH OTHERS PHYS --- (CALCULATE BEFORE CROSS-OVERRIDES)
+  const bibAuthPhysQ1 = responses['bib_auth_others_phys']?.q1 || 0;
+  const bibAuthPhysQ2 = responses['bib_auth_others_phys']?.q2 || 0;
+  const bibAuthPhysQ3 = responses['bib_auth_others_phys']?.q3 || 0;
+  const bibAuthPhysValues = [bibAuthPhysQ1, bibAuthPhysQ2, bibAuthPhysQ3];
+  const bibAuthPhysHasAnswers = hasValidAnswers(bibAuthPhysValues);
+  const nonZeroBibAuthPhys = getNonZeroValues(bibAuthPhysValues);
+  let bibAuthPhysScore = bibAuthPhysHasAnswers ? Math.max(...nonZeroBibAuthPhys) : 0;
+  
+  // --- TOPIC 6: MOTIVATIONAL ALIGNMENT ---
   const motAlignQ1 = responses['motivational_alignment']?.q1 || 0;
   const motAlignQ2 = responses['motivational_alignment']?.q2 || 0;
   const motAlignQ3 = responses['motivational_alignment']?.q3 || 0;
@@ -675,25 +705,25 @@ function calculateScores(responses) {
   scoresLabels['Motivational Alignment'] = motivationalLabels[motAlignScore] || '';
   scoresWithValidity['Motivational Alignment'] = motAlignHasAnswers;
   
-  // --- TOPIC 6: EVANGELISM ---
+  // --- TOPIC 7: EVANGELISM ---
   const evangelismQ1 = responses['evangelism']?.q1 || 0;
   scores['Evangelism'] = evangelismQ1;
   scoresLabels['Evangelism'] = evangelismLabels[evangelismQ1] || '';
   scoresWithValidity['Evangelism'] = evangelismQ1 !== 0;
   
-  // --- TOPIC 7: SPIRITUAL WARFARE ---
+  // --- TOPIC 8: SPIRITUAL WARFARE ---
   const spiritWarfareQ1 = responses['spiritual_warfare']?.q1 || 0;
   const spiritWarfareQ2 = responses['spiritual_warfare']?.q2 || 0;
   const spiritWarfareValues = [spiritWarfareQ1, spiritWarfareQ2];
   const spiritWarfareHasAnswers = hasValidAnswers(spiritWarfareValues);
   const nonZeroSpiritWarfare = getNonZeroValues(spiritWarfareValues);
-  const spiritWarfareScore = spiritWarfareHasAnswers ? Math.max(...nonZeroSpiritWarfare) : 0;
+  const spiritWarfareScore = spiritWarfireHasAnswers ? Math.max(...nonZeroSpiritWarfare) : 0;
   
   scores['Spiritual Warfare'] = spiritWarfareScore;
   scoresLabels['Spiritual Warfare'] = spiritualWarfareLabels[spiritWarfareScore] || '';
   scoresWithValidity['Spiritual Warfare'] = spiritWarfareHasAnswers;
   
-  // --- TOPIC 8: CHURCH ---
+  // --- TOPIC 9: CHURCH ---
   const churchQ1 = responses['church']?.q1 || 0;
   const churchQ2 = responses['church']?.q2 || 0;
   const churchQ3 = responses['church']?.q3 || 0;
@@ -707,13 +737,13 @@ function calculateScores(responses) {
   scoresLabels['Relationship to a Church'] = churchLabels[churchScore] || '';
   scoresWithValidity['Relationship to a Church'] = churchHasAnswers;
   
-  // --- TOPIC 9: LEADER ---
+  // --- TOPIC 10: LEADER ---
   const leaderQ1 = responses['leader']?.q1 || 0;
   scores['Relationship to a Leader'] = leaderQ1;
   scoresLabels['Relationship to a Leader'] = leaderLabels[leaderQ1] || '';
   scoresWithValidity['Relationship to a Leader'] = leaderQ1 !== 0;
   
-  // --- TOPIC 10: POLITICAL ---
+  // --- TOPIC 11: POLITICAL ---
   const politicalQ1 = responses['political']?.q1 || 0;
   const politicalQ2Val = responses['political']?.q2 || 0;
   const politicalQ3 = responses['political']?.q3 || 0;
@@ -738,13 +768,13 @@ function calculateScores(responses) {
   scoresLabels['Political Alignment'] = politicalLabels[politicalScore] || '';
   scoresWithValidity['Political Alignment'] = politicalHasAnswers;
   
-  // --- TOPIC 11: PERSECUTION ---
+  // --- TOPIC 12: PERSECUTION ---
   const persecutionQ1 = responses['persecution']?.q1 || 0;
   scores['Religious Persecution'] = persecutionQ1;
   scoresLabels['Religious Persecution'] = persecutionLabels[persecutionQ1] || '';
   scoresWithValidity['Religious Persecution'] = persecutionQ1 !== 0;
   
-  // --- TOPIC 12: AUTHORITARIAN ---
+  // --- TOPIC 13: AUTHORITARIAN ---
   const authoritarianQ1 = responses['authoritarian']?.q1 || 0;
   const authoritarianQ2 = responses['authoritarian']?.q2 || 0;
   const authoritarianValues = [authoritarianQ1, authoritarianQ2];
@@ -756,21 +786,13 @@ function calculateScores(responses) {
   scoresLabels['Christian Authoritarianism'] = authoritarianLabels[authoritarianScore] || '';
   scoresWithValidity['Christian Authoritarianism'] = authoritarianHasAnswers;
   
-  // --- TOPIC 13: RACISM ---
+  // --- TOPIC 14: RACISM ---
   const racismQ1 = responses['racism']?.q1 || 0;
   scores['Racism'] = racismQ1;
   scoresLabels['Racism'] = racismLabels[racismQ1] || '';
   scoresWithValidity['Racism'] = racismQ1 !== 0;
   
-  // --- TOPIC 14: BIB AUTH OTHERS PHYS ---
-  const bibAuthPhysQ1 = responses['bib_auth_others_phys']?.q1 || 0;
-  const bibAuthPhysQ2 = responses['bib_auth_others_phys']?.q2 || 0;
-  const bibAuthPhysQ3 = responses['bib_auth_others_phys']?.q3 || 0;
-  const bibAuthPhysValues = [bibAuthPhysQ1, bibAuthPhysQ2, bibAuthPhysQ3];
-  const bibAuthPhysHasAnswers = hasValidAnswers(bibAuthPhysValues);
-  const nonZeroBibAuthPhys = getNonZeroValues(bibAuthPhysValues);
-  let bibAuthPhysScore = bibAuthPhysHasAnswers ? Math.max(...nonZeroBibAuthPhys) : 0;
-  
+  // --- APPLY CROSS-TOPIC OVERRIDES TO BIB_AUTH_OTHERS_PHYS ---
   // Override Order Matters:
   // 1. If bib_auth_for_self Q1 = 1 → force to 1 (lowest priority)
   if (bibAuthSelfQ1 === 1) {
@@ -792,9 +814,9 @@ function calculateScores(responses) {
     bibAuthPhysScore = 5;
   }
   
-  scores['Biblical Authority: Others\' Bodies'] = bibAuthPhysScore;
-  scoresLabels['Biblical Authority: Others\' Bodies'] = bibAuthOthersPhysLabels[bibAuthPhysScore] || '';
-  scoresWithValidity['Biblical Authority: Others\' Bodies'] = bibAuthPhysHasAnswers || bibAuthSelfQ1 === 1 || bibAuthSelfQ3 === 10 || motAlignQ3 === 5 || authoritarianHasAnswers;
+  scores["Biblical Authority: Other peoples' Bodies"] = bibAuthPhysScore;
+  scoresLabels["Biblical Authority: Other peoples' Bodies"] = bibAuthOthersPhysLabels[bibAuthPhysScore] || '';
+  scoresWithValidity["Biblical Authority: Other peoples' Bodies"] = bibAuthPhysHasAnswers || bibAuthSelfQ1 === 1 || bibAuthSelfQ3 === 10 || motAlignQ3 === 5 || authoritarianHasAnswers;
   
   return { scores, scoresLabels, scoresWithValidity };
 }
@@ -808,13 +830,15 @@ function submitQuiz() {
   const tbody = document.getElementById('resultsBody');
   tbody.innerHTML = '';
   
-  for (const [topic, score] of Object.entries(scores)) {
+  // Iterate in SPECIFIC ORDER using TOPIC_ORDER array
+  TOPIC_ORDER.forEach(topic => {
     const row = document.createElement('tr');
     
+    const score = scores[topic];
     const hasAnswers = scoresWithValidity[topic];
     const label = scoresLabels[topic];
     
-    if (hasAnswers) {
+    if (hasAnswers && score !== undefined && score !== 0) {
       row.innerHTML = `
         <td>${topic}</td>
         <td>${score}</td>
@@ -829,7 +853,7 @@ function submitQuiz() {
     }
     
     tbody.appendChild(row);
-  }
+  });
   
   document.getElementById('quizContainer').classList.add('hide');
   document.getElementById('resultsContainer').style.display = 'block';
