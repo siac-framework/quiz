@@ -823,6 +823,12 @@ function calculateScores(responses) {
 
 // Submit quiz and display results
 function submitQuiz() {
+  // Prevent double submission
+  const submitBtn = document.querySelector('.submit-btn');
+  if (submitBtn.disabled) return;
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Submitting...';
+  
   topicResults = collectResponses();
   
   const { scores, scoresLabels, scoresWithValidity } = calculateScores(topicResults);
@@ -854,6 +860,17 @@ function submitQuiz() {
     
     tbody.appendChild(row);
   });
+  
+  // Hide quiz container COMPLETELY
+  const quizContainer = document.getElementById('quizContainer');
+  quizContainer.style.display = 'none';
+  quizContainer.classList.add('hide');
+  
+  // Show results container
+  const resultsContainer = document.getElementById('resultsContainer');
+  resultsContainer.style.display = 'block';
+  resultsContainer.scrollIntoView({ behavior: 'smooth' });
+}
   
   document.getElementById('quizContainer').classList.add('hide');
   document.getElementById('resultsContainer').style.display = 'block';
