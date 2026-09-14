@@ -890,3 +890,24 @@ function resetQuiz() {
   document.getElementById('resultsContainer').style.display = 'none';
   document.getElementById('quizContainer').classList.remove('hide');
 }
+
+// ===================================
+// DEBUG: Verify everything loaded
+// ===================================
+console.log('=== QUIZ INIT DEBUG ===');
+console.log('quizData length:', quizData?.length);
+console.log('TOPIC_ORDER length:', TOPIC_ORDER?.length);
+console.log('DOM ready?', document.readyState);
+
+if (typeof quizData !== 'undefined') {
+  console.log('✓ quizData loaded');
+  console.log('First topic:', quizData[0]?.title);
+} else {
+  console.error('✗ quizData NOT FOUND');
+}
+
+if (document.getElementById('quizContainer')) {
+  console.log('✓ quizContainer element found');
+} else {
+  console.error('✗ quizContainer element NOT FOUND');
+}
