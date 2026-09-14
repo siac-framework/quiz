@@ -15,6 +15,20 @@ body {
 }
 
 /* ==========================================
+   UTILITY CLASSES
+   ========================================== */
+.hide {
+  display: none !important;
+}
+
+/* Disable submit button during submission */
+.submit-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ==========================================
    HEADER AND INTRODUCTION
    ========================================== */
 .quiz-header {
