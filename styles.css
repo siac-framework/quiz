@@ -7,7 +7,7 @@
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background-color: #dff2fb;
+  background-color: #b8d4df; /* DARKER than #dff2fb */
   color: #333333;
   margin: 0;
   padding: 2rem 1rem;
@@ -51,7 +51,7 @@ body {
    QUESTION CARDS (Individual Questions)
    ========================================== */
 .question-card {
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.8); /* More opaque than 0.6 */
   border-radius: 8px;
   margin-bottom: 1rem;
   overflow: hidden;
@@ -77,7 +77,7 @@ body {
 }
 
 .question-header:hover {
-  background: rgba(0, 0, 0, 0.03);
+  background: rgba(76, 175, 80, 0.15); /* GREEN TINT like submit button */
 }
 
 /* Question Text Preview in Header */
@@ -122,9 +122,13 @@ body {
   max-height: 1000px;
 }
 
-/* Hide redundant question text inside expanded section */
+/* Individual Question Text (Shown When Expanded) */
 .question-text {
-  display: none;
+  padding: 1rem 1rem 0.5rem;
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.5;
+  font-weight: 500;
 }
 
 /* ==========================================
@@ -140,7 +144,7 @@ body {
 .option-label {
   display: block;
   padding: 0.75rem 1rem;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.7); /* More opaque */
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.2s;
@@ -148,8 +152,8 @@ body {
 }
 
 .option-label:hover {
-  background: rgba(255, 255, 255, 0.8);
-  border-color: rgba(0, 0, 0, 0.1);
+  background: rgba(76, 175, 80, 0.2); /* GREEN TINT like submit button */
+  border-color: rgba(76, 175, 80, 0.3);
 }
 
 .option-label input[type="radio"] {
@@ -160,8 +164,8 @@ body {
 
 /* Selected Option Highlight */
 .option-label:has(input[type="radio"]:checked) {
-  background: rgba(102, 126, 234, 0.15);
-  border-color: #667eea;
+  background: rgba(76, 175, 80, 0.2);
+  border-color: #4caf50;
 }
 
 /* ==========================================
@@ -186,33 +190,33 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-
-
 /* ==========================================
-   UTILITY CLASSES
-   ========================================== */
-.hide {
-  display: none !important;
-}
-
-/* ==========================================
-   RESULTS CONTAINER (Hidden Initially)
+   RESULTS CONTAINER (Fixed Header)
    ========================================== */
 .results-container {
   display: none;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.7); /* Slightly more opaque */
   border-radius: 8px;
   padding: 2rem;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(0, 0, 0, 0.1);
   max-width: 900px;
   margin: 0 auto;
+  max-height: 80vh; /* REQUIRED for sticky to work */
+  overflow-y: auto; /* REQUIRED for sticky to work */
 }
 
 .results-container h2 {
   margin-top: 0;
   color: #2c3e50;
   text-align: center;
+  position: sticky;
+  top: -2rem; /* Pull header above scrollable area */
+  background: rgba(184, 212, 223, 0.95); /* Match body background */
+  padding: 0.5rem;
+  margin: -2rem -2rem 1rem; /* Extend full width */
+  border-radius: 8px 8px 0 0;
+  z-index: 10;
 }
 
 /* Results Table */
@@ -221,6 +225,7 @@ body {
   border-collapse: collapse;
   margin-top: 1rem;
   table-layout: auto;
+  position: relative;
 }
 
 .results-table th,
@@ -232,11 +237,12 @@ body {
 }
 
 .results-table th {
-  background: rgba(0, 0, 0, 0.05);
+  background: rgba(76, 175, 80, 0.15); /* GREEN TINT */
   font-weight: bold;
   color: #2c3e50;
   position: sticky;
   top: 0;
+  z-index: 5;
 }
 
 .results-table tr:last-child td {
@@ -244,7 +250,7 @@ body {
 }
 
 .results-table tr:hover {
-  background: rgba(0, 0, 0, 0.03);
+  background: rgba(76, 175, 80, 0.1); /* LIGHT GREEN TINT */
 }
 
 /* Score Column (Centered, Numeric) */
@@ -274,9 +280,8 @@ body {
 }
 
 /* Not Enough Answers Styling */
-.results-table td:contains("Not enough answers") {
-  color: #e74c3c;
-  font-style: italic;
+.results-table tr:not(:hover):nth-child(odd) td {
+  background: rgba(0, 0, 0, 0.02);
 }
 
 /* ==========================================
@@ -284,13 +289,13 @@ body {
    ========================================== */
 @media (max-width: 768px) {
   .results-container {
+    max-height: 70vh;
     padding: 1rem;
-    overflow-x: auto;
   }
   
-  .results-table {
-    display: block;
-    overflow-x: auto;
+  .results-container h2 {
+    margin: -1rem -1rem 1rem;
+    padding: 0.5rem;
   }
   
   .results-table th,
@@ -305,7 +310,51 @@ body {
 }
 
 @media (max-width: 480px) {
+  body {
+    padding: 1rem 0.5rem;
+  }
+
+  .quiz-header {
+    padding: 1rem 0.5rem 2rem;
+  }
+
+  .quiz-header h1 {
+    font-size: 1.75rem;
+  }
+
+  .intro-text {
+    font-size: 1rem;
+  }
+
+  .question-header {
+    padding: 0.75rem;
+  }
+
+  .question-text {
+    padding: 0.75rem;
+    font-size: 0.95rem;
+  }
+
+  .options-group {
+    padding: 0 0.75rem 0.75rem;
+  }
+
+  .option-label {
+    padding: 0.6rem 0.75rem;
+  }
+
+  .submit-btn {
+    padding: 0.85rem;
+    font-size: 1rem;
+  }
+
+  .results-container {
+    padding: 1rem;
+    max-height: 65vh;
+  }
+  
   .results-container h2 {
+    margin: -1rem -1rem 0.5rem;
     font-size: 1.5rem;
   }
   
