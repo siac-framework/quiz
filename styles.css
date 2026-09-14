@@ -192,7 +192,7 @@ body {
   display: none;                      /* Keep your JS toggle working */
   background: rgba(255, 255, 255, 0.7);
   border-radius: 8px;
-  padding: 1.5rem;                    /* Slightly reduced from 2rem */
+  padding: 1.0rem;                    /* Slightly reduced from 2rem */
   backdrop-filter: blur(10px);
   border: 1px solid rgba(0, 0, 0, 0.1);
   max-width: 900px;
@@ -225,7 +225,7 @@ body {
 
 .results-table th,
 .results-table td {
-  padding: 0.6rem 1rem;               /* Reduced from 1rem — tighter rows */
+  padding: 0.4rem 0.75rem;
   text-align: left;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   vertical-align: top;
