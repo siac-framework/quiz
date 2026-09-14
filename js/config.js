@@ -289,7 +289,7 @@ export const quizData = [
         id: 'q2',
         text: "Should Christians help the needy and the struggling only through donating to churches and religious organizations? Or should Christians help the needy and the struggling through paying taxes as well as personal donations?",
         options: [
-          { score: 1, text: "Christians should not rely on the state to help the needy, they should vote against it and instead donate to religious institutions or nonprofits so those groups can help the needy." },
+          { score: 3, text: "Christians should not rely on the state to help the needy, they should vote against it and instead donate to religious institutions or nonprofits so those groups can help the needy." },
           { score: 2, text: "Christians can donate to organizations to help the needy, but it is also efficient (and even Christlike) to pay taxes and vote to have the government run programs to help the needy." }
         ]
       },
@@ -331,7 +331,7 @@ export const quizData = [
   },
   {
     id: 'authoritarian',
-    title: 'Christian Authoritarianism',
+    title: 'Authoritarian/Fascist',
     questions: [
       {
         id: 'q1',
@@ -384,7 +384,7 @@ export const TOPIC_ORDER = [
   'Relationship to a Leader',
   'Political Alignment',
   'Religious Persecution',
-  'Christian Authoritarianism',
+  'Authoritarian/Fascist',
   'Racism'
 ];
 
@@ -478,7 +478,7 @@ export const persecutionLabels = {
 
 export const racismLabels = {
   1: 'Christianity is for everyone, and all people are created equal',
-  2: 'Christianity is for everyone, but white people are better',
+  2: 'Christianity is for everyone, but white people are better',/Fascim
   3: 'Christianity is only for White people'
 };
 
@@ -492,6 +492,6 @@ export const bibAuthOthersPhysLabels = {
 };
 
 export const authoritarianLabels = {
-  1: 'Secular Nation',
-  5: 'Christian Nation'
+  1: 'Lover of Democracy',
+  5: 'Religiously Authoritarian: Forced compliance of tenets from one religion onto all citizens'
 };
