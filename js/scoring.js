@@ -177,9 +177,9 @@ export function calculateScores(responses) {
   const nonZeroAuthoritarian = getNonZeroValues(authoritarianValues);
   const authoritarianScore = authoritarianHasAnswers ? Math.max(...nonZeroAuthoritarian) : 0;
   
-  scores['Christian Authoritarianism'] = authoritarianScore;
-  scoresLabels['Christian Authoritarianism'] = authoritarianLabels[authoritarianScore] || '';
-  scoresWithValidity['Christian Authoritarianism'] = authoritarianHasAnswers;
+  scores['Authoritarian/Fascist'] = authoritarianScore;
+  scoresLabels['Authoritarian/Fascist'] = authoritarianLabels[authoritarianScore] || '';
+  scoresWithValidity['Authoritarian/Fascist'] = authoritarianHasAnswers;
   
   // --- TOPIC 14: RACISM ---
   const racismQ1 = responses['racism']?.q1 || 0;
