@@ -248,6 +248,20 @@ body {
   background: rgba(76, 175, 80, 0.1);
 }
 
+.reset-btn {
+  width: 100%;
+  padding: 1rem;
+  margin-top: 2rem;
+  background: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
 /* Score Column (Centered, Numeric) */
 .results-table td:nth-child(2) {
   text-align: center;
