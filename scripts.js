@@ -825,9 +825,11 @@ function calculateScores(responses) {
 function submitQuiz() {
   // Prevent double submission
   const submitBtn = document.querySelector('.submit-btn');
-  if (submitBtn.disabled) return;
-  submitBtn.disabled = true;
-  submitBtn.textContent = 'Submitting...';
+  if (submitBtn && submitBtn.disabled) return;
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting...';
+  }
   
   topicResults = collectResponses();
   
@@ -866,8 +868,9 @@ function submitQuiz() {
   quizContainer.style.display = 'none';
   quizContainer.classList.add('hide');
   
-  // Show results container
+  // Show results container - REMOVE .hide CLASS FIRST (KEY FIX!)
   const resultsContainer = document.getElementById('resultsContainer');
+  resultsContainer.classList.remove('hide');
   resultsContainer.style.display = 'block';
   resultsContainer.scrollIntoView({ behavior: 'smooth' });
 }
@@ -883,9 +886,15 @@ function resetQuiz() {
   topicResults = {};
   window.scrollTo({ top: 0, behavior: 'smooth' });
   
-  document.getElementById('resultsContainer').style.display = 'none';
-  document.getElementById('quizContainer').style.display = 'block';
-  document.getElementById('quizContainer').classList.remove('hide');
+  // Hide results container - ADD .hide CLASS
+  const resultsContainer = document.getElementById('resultsContainer');
+  resultsContainer.classList.add('hide');
+  resultsContainer.style.display = 'none';
+  
+  // Show quiz container - REMOVE .hide CLASS
+  const quizContainer = document.getElementById('quizContainer');
+  quizContainer.style.display = 'block';
+  quizContainer.classList.remove('hide');
   
   // Re-enable submit button
   const submitBtn = document.querySelector('.submit-btn');
