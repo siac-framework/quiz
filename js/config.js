@@ -478,7 +478,7 @@ export const persecutionLabels = {
 
 export const racismLabels = {
   1: 'Christianity is for everyone, and all people are created equal',
-  2: 'Christianity is for everyone, but white people are better',/Fascim
+  2: 'Christianity is for everyone, but white people are better',
   3: 'Christianity is only for White people'
 };
 
