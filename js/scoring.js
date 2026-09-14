@@ -92,7 +92,7 @@ export function calculateScores(responses) {
   let motAlignScore = motAlignHasAnswers ? Math.max(...nonZeroMotAlign) : 0;
   
   const politicalQ2 = responses['political']?.q2 || 0;
-  if (politicalQ2 === 1 && motAlignScore < 4) {
+  if (politicalQ2 === 3 && motAlignScore < 4) {
     motAlignScore = 4;
   }
   
