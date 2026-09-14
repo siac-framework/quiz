@@ -390,59 +390,59 @@ export const TOPIC_ORDER = [
 
 // Label maps
 export const bibFamiliarityLabels = {
-  1: 'Osmosist: Never or basically never reads the Bible',
-  2: 'Osmosist: Rarely to sometimes reads the Bible',
-  3: 'Indirect: Getting info about the Bible from handouts or guides',
-  4: 'Committed: Reads Bible outside church/mass',
-  5: 'Researcher: Reads Bible often, and uses ancient languages to check context'
+  1: 'Osmosist: Never or basically never',
+  2: 'Osmosist: Sometimes reads the Bible',
+  3: 'Indirect',
+  4: 'Committed',
+  5: 'Researcher'
 };
 
 export const biblicalAlignmentLabels = {
-  1: 'Gospels: Only the Gospels are a source of Truth',
-  2: 'Red Letter: Only Jesus\'s words are a source of Truth',
-  3: 'New Testament: Only the NT is a source of Truth and laws',
-  4: 'Old Testament: The Old Testament is the preferred source of truth and laws',
-  5: 'Cherry Picker: All parts of the Bible are equally true and I can pick from any of the laws'
+  1: 'Gospels',
+  2: 'Red Letter',
+  3: 'New Testament',
+  4: 'Old Testament',
+  5: 'Cherry Picker'
 };
 
 export const bibAuthForSelfLabels = {
-  1: 'Idealist: Just likes the ideals of Christ',
-  2: 'Good Bookist: Bible has good stories and morals, but I don\'t have to follow them',
-  3: 'Honorist: The Bible has important teachings, but also it\'s old and can\'t be relied on',
-  4: 'Partial Literalist: Some parts of the Bible are to be followed literally and some aren\'t',
-  5: 'Literalist: The whole Bible is literal, and I follow it the best I can',
-  6: 'Literalist Separatists: To follow the Bible faithfully, I have to be apart from most of society'
+  1: 'Idealist',
+  2: 'Good Bookist',
+  3: 'Honorist',
+  4: 'Partial Literalist',
+  5: 'Literalist',
+  6: 'Literalist Separatists'
 };
 
 export const bibAuthOthersSoulsLabels = {
-  1: 'Many Paths: Many Paths up the Mountain and all are equal',
-  2: 'Good People: Good People end up in Heaven',
-  3: 'Christ Only: Christ is the Only Way, for everyone'
+  1: 'Many Paths up the Mtn',
+  2: 'Good People end up in Heaven',
+  3: 'Christ is the Only Way'
 };
 
 export const motivationalLabels = {
-  1: 'None: my faith doesn\'t motivate me to police others',
-  2: 'Live and Let Live: God is Judge, I\'m not motivated to police others',
-  3: 'Concern: I feel compelled to intervene when a Body or Soul could be in danger (according to my definition of danger)',
-  4: 'Control/Conformity: motivated to intervene because of what the Bible says, or my pastor/priest says, or because it\'s my culture',
-  5: 'Hate/Disgust: motivated to intervene because something is unnatural or disgusting (according to my definitions)'
+  1: 'None',
+  2: 'Live and Let Live',
+  3: 'Concern',
+  4: 'Control/Conformity',
+  5: 'Hate/Disgust'
 };
 
 export const evangelismLabels = {
   1: 'No one needs saving',
-  2: 'Not Evangelical: not my place, not my job, not my expertise, or Calvinist',
-  3: 'Mild/Moderately Evangelical: Jesus might need my other skills more',
-  4: 'Life-Purpose Evangelical: The only purpose of a Christian\'s life is to help save souls',
-  5: 'Missionary: Above and beyond personal relationships'
+  2: 'Not Evangelical',
+  3: 'Mild/Moderately Evangelical',
+  4: 'Life-Purpose Evangelical',
+  5: 'Missionary'
 };
 
 export const spiritualWarfareLabels = {
-  1: 'None: didn\'t cross my mind, or there isn\'t a war like that',
-  2: 'Maybe Angels: Angels- Yes! Demons- I guess so',
-  3: 'Not My War: It\'s between God and Satan',
-  4: 'Spiritual War + Prayer: it\'s real and I can fight by praying and remaining mentally strong and Non-Violent',
-  5: 'Spiritual War + Demonic Possession: It\'s real and I can fight it by praying and casting out demons',
-  6: 'Spiritual War + Physical Violence: It\'s real and I can help Jesus come back by physically or financially supporting Israeli wars'
+  1: 'None',
+  2: 'Maybe Angels',
+  3: 'Not My War',
+  4: 'Spiritual War via Prayer',
+  5: 'Spiritual War via Demonic Possession',
+  6: 'Spiritual War via Physical Violence'
 };
 
 export const churchLabels = {
@@ -455,43 +455,43 @@ export const churchLabels = {
 
 export const leaderLabels = {
   1: 'No Leader',
-  2: 'Generally respected leader: still weighs other sources to shape values/beliefs',
-  3: 'Admired Leader, Spiritual Peer: Can question a spiritual peer and still be inspired',
-  4: 'Adoration and Submission: Authority/hierarchy is important, but more awe and inspiration',
-  5: 'Leader over Bible: follow the leader even when in conflict with the Bible',
-  6: 'Cult: the leader of a cult uses methods of control (of behavior, information, thought, and emotions) to replace a person\'s free will with obedience and replace their individuality with dependency. This can include using secrecy, deception, manipulation, sexual pressure or rape, or violence. It often includes shunning or harassing individuals who leave the group. -Dr. Steven Hasan\'s BITE model'
+  2: 'Generally respected leader',
+  3: 'Admired Leader, Spiritual Peer',
+  4: 'Adoration and Submission',
+  5: 'Leader over Bible',
+  6: 'Cult'
 };
 
 export const politicalLabels = {
   1: 'Non-Voter',
   2: 'Liberal who votes Democrat',
   3: 'Conservative who votes Republican',
-  4: 'Liberal who votes Republican (Liberal Hostages)',
+  4: 'Liberal who votes Republican (Liberal Hostage)',
   5: 'Conservative who votes Democrat'
 };
 
 export const persecutionLabels = {
   1: 'Christians are not persecuted',
-  2: 'Christians occasionally face minor persecution',
-  3: 'Christians actively face major persecution'
+  2: 'Christians fave minor persectution',
+  3: 'Christians face major persecution'
 };
 
 export const racismLabels = {
-  1: 'Christianity is for everyone, and all people are created equal',
-  2: 'Christianity is for everyone, but white people are better',
+  1: 'All humans are equal to God',
+  2: 'White people are better Christians',
   3: 'Christianity is only for White people'
 };
 
 export const bibAuthOthersPhysLabels = {
-  1: 'None: the Bible isn\'t an authority for me, so it\'s not an authority for anyone else',
-  2: 'Live and Let Live: The Bible is my authority, but I let God be the Judge of everyone else',
-  3: 'Peer-Only-Policer: The Bible is an authority to me and other Christians, but it shouldn\'t be imposed on people who aren\'t Christians yet',
-  4: 'Open Season Policing: The Bible is true for everyone, even if they don\'t think so',
-  5: 'Christian Authoritarian: The US is or should be a Christian nation, and the rules of the Bible should be turned into laws',
-  6: 'Vigilantes & Criminals: Breaking the law or committing violence in the name of God'
+  1: 'None',
+  2: 'Live and Let Live',
+  3: 'Peer-Only-Policer',
+  4: 'Open Season Policing',
+  5: 'Christian Authoritarian',
+  6: 'Vigilantes & Criminals'
 };
 
 export const authoritarianLabels = {
-  1: 'Lover of Democracy',
-  5: 'Religiously Authoritarian: Forced compliance of tenets from one religion onto all citizens'
+  1: 'Pro Democracy',
+  5: 'Forced compliance of 1 religion\'s rules onto all citizens'
 };
