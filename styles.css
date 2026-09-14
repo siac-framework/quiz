@@ -261,6 +261,10 @@ body {
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
 }
+.reset-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
 
 /* Score Column (Centered, Numeric) */
 .results-table td:nth-child(2) {
