@@ -188,16 +188,16 @@ export function calculateScores(responses) {
   scoresWithValidity['Racism'] = racismQ1 !== 0;
   
   // --- APPLY CROSS-TOPIC OVERRIDES TO BIB_AUTH_OTHERS_PHYS ---
-  if (bibAuthSelfQ1 === 1) {
-    bibAuthPhysScore = 1;
-  }
+  // if (bibAuthSelfQ1 === 1) {
+  //   bibAuthPhysScore = 1;
+  // }
   if (bibAuthSelfQ3 === 10) {
     bibAuthPhysScore = 6;
   }
   if (motAlignQ3 === 5) {
     bibAuthPhysScore = 6;
   }
-  if (authoritarianScore == 5 && bibAuthPhysScore < 5) {
+  if (authoritarianScore == 5  && bibAuthPhysScore < 5) {
     bibAuthPhysScore = 5;
   }
   
