@@ -196,7 +196,7 @@ export const quizData = [
     questions: [
       
       {
-        id: 'qid: 'q2',
+        id: 'q2',
         text: "Even though the US Constitution is explicit that Congress cannot make a law that establishes a national religion or make laws that prevent people from practicing their religions, do you think the US government should declare a national religion that is some form of Christian?",
         options: [
           { score: 5, text: "Yes -- we need to reclaim the fact that we started as a Christian nation" },
