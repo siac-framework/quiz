@@ -201,7 +201,7 @@ body {
 /* Action Buttons */
 .submit-btn,
 .action-button {
-  width: 100%;
+  width: 30%;
   padding: 1.1rem;
   margin-top: 2rem;
   border: none;
@@ -218,6 +218,7 @@ body {
 
 .submit-btn {
   background: var(--accent-success);
+  width: 100%;
 }
 
 .action-button {
