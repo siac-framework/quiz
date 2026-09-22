@@ -6,6 +6,7 @@ let topicResults = {};
 
 document.addEventListener('DOMContentLoaded', () => {
   flattenAndRenderQuiz();
+  initAutoCloseCards();
 });
 
 // Collect all responses organized by topic
@@ -123,3 +124,44 @@ window.resetQuiz = function() {
     submitBtn.textContent = 'Submit Answers';
   }
 };
+
+function initAutoCloseCards() {
+  const quizContainer = document.getElementById('quizContainer');
+  
+  if (!quizContainer) return;
+  
+  // Re-run on mutation observer (handles dynamic question loading)
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.addedNodes.length) {
+        setupAutoCloseForNewRadioButtons();
+      }
+    });
+  });
+  
+  observer.observe(quizContainer, { childList: true, subtree: true });
+  
+  setupAutoCloseForNewRadioButtons();
+}
+
+function setupAutoCloseForNewRadioButtons() {
+  const allOptions = quizContainer.querySelectorAll('.option-label input[type="radio"]');
+  
+  // Remove any existing listeners first (prevent duplicates)
+  allOptions.forEach(radio => {
+    if (!radio.hasAttribute('data-auto-close-initialized')) {
+      radio.setAttribute('data-auto-close-initialized', 'true');
+      
+      radio.addEventListener('change', function() {
+        const questionCard = this.closest('.question-card');
+        
+        if (questionCard && questionCard.classList.contains('active')) {
+          // 500ms wait + 50ms buffer for CSS transition to start
+          setTimeout(() => {
+            questionCard.classList.remove('active');
+          }, 500);
+        }
+      });
+    }
+  });
+}

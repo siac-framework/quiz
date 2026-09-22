@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,12 +9,12 @@
   <title>SIAC Framework Quiz</title>
   <link rel="stylesheet" href="styles.css">
 </head>
-<body style="background-color: #f8f8f7">
+<body class="short-theme">
   <div class="quiz-header">
-  <h1>The SIAC Framework Quiz</h1>
-  <h1>Short Version!</h1>
-  <p class="intro-text">Note: This assumes that you self identify as a follower of Christ for your spiritual path, or that you Self Identify As "Christian" (SIAC). This test is also inherently US-based, so there may be some questions that do not apply to you if you are not an American or are not living in the US.</p>
-  <p>Selections and results are not stored</p>
+    <h1>The SIAC Framework Quiz</h1>
+    <h2>Short Version!</h2>
+    <p class="intro-text">Note: This assumes that you self identify as a follower of Christ for your spiritual path, or that you Self Identify As "Christian" (SIAC). This test is also inherently US-based, so there may be some questions that do not apply to you if you are not an American or are not living in the US.</p>
+    <p>Selections and results are not stored</p>
   </div>
 
   <!-- Quiz Container -->
@@ -19,7 +22,7 @@
     <!-- Questions will be dynamically inserted here by JavaScript -->
   </div>
 
-  <!-- Results Container (Initially Hidden - NO hide class, just style) -->
+  <!-- Results Container (Initially Hidden) -->
   <div id="resultsContainer" class="results-container" style="display: none;">
     <h2>Your Results</h2>
     <table class="results-table">
@@ -33,16 +36,10 @@
       <tbody id="resultsBody">
       </tbody>
     </table>
-    <div style="display: flex; gap: 1.5rem; justify-content: center; ">      
-      <a onclick="resetQuiz()" style="background: #2196f3; width: 50%;  padding: 1rem;  margin-top: 2rem;  color: white;  border: none;  border-radius: 8px;  font-size: 1.1rem;  font-weight: bold;  cursor: pointer;  transition: transform 0.2s, box-shadow 0.2s;"> 
-        Take Quiz Again ↻
-      </a>
-      <a  href="index.html" style="background: #39ba4e; width: 50%;  padding: 1rem;  margin-top: 2rem;  color: white;  border: none;  border-radius: 8px;  font-size: 1.1rem;  font-weight: bold;  cursor: pointer;  transition: transform 0.2s, box-shadow 0.2s;"> 
-        Home
-      </a>
-            <a  href="what-do-score-mean.html" style="background: #f7b809; width: 50%;  padding: 1rem;  margin-top: 2rem;  color: white;  border: none;  border-radius: 8px;  font-size: 1.1rem;  font-weight: bold;  cursor: pointer;  transition: transform 0.2s, box-shadow 0.2s;"> 
-        What does this even mean?!?
-      </a>
+    <div class="button-row">      
+      <a onclick="resetQuiz()" class="action-button btn-reset">Take Quiz Again ↻</a>
+      <a href="index.html" class="action-button btn-home">Home</a>
+      <a href="what-do-score-mean.html" class="action-button btn-info">What does this even mean?!?</a>
     </div>
   </div>
 
